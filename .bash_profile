@@ -8,7 +8,7 @@ PATH="$PATH:/usr/local/bin"
 PATH="$PATH:~/bin"
 PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 
-if (which fnm)
+if test $(which fnm)
 then
     eval "$(fnm env --multi)"
 fi
