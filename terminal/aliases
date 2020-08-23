@@ -1,0 +1,15 @@
+alias mente="cd ~"
+alias desk="cd ~/Desktop"
+alias web="cd ~/websites"
+alias dev="cd ~/development"
+alias apps="cd ~/apps"
+
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+
+alias ..="cd ../"
+alias ...="cd ../../"
+
+alias ginit="git init"
+alias gad="git add"
+alias gomit="git commit -m"
+alias gush="git push"
