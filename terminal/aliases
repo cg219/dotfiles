@@ -4,8 +4,6 @@ alias web="cd ~/websites"
 alias dev="cd ~/development"
 alias apps="cd ~/apps"
 
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-
 alias gateo="sudo spctl --master-disable"
 alias gatec="sudo spctl --master-enable"
 
