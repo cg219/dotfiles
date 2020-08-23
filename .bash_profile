@@ -8,4 +8,9 @@ PATH="$PATH:/usr/local/bin"
 PATH="$PATH:~/bin"
 PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 
+if (which fnm)
+then
+    eval "$(fnm env --multi)"
+fi
+
 export PATH=$PATH
