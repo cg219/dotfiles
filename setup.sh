@@ -76,7 +76,9 @@ brew cask install brave-browser
 brew cask install chromium
 brew cask install cyberduck
 brew cask install docker
+brew cask install dropbox
 brew cask install iterm2
+brew cask install ledger-live
 brew cask install notion
 brew cask install postman
 brew cask install rightfont
