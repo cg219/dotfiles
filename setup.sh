@@ -48,6 +48,7 @@ echo "Setup dotfiles..."
 cd ~
 git clone git@github.com:cg219/dotfiles.git
 ln -s $HOME/dotfiles/.bash_profile $HOME/.bash_profile
+ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
 source ~/.bash_profile
 
 echo "Installing Homebrew..."
