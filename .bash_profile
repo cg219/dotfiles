@@ -1,4 +1,4 @@
-for file in "$HOME/dotfiles/terminal/*"
+for file in ~/dotfiles/terminal/*
 do
     source $file
 done

@@ -37,7 +37,7 @@ parse_git_branch () {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-PS1="\[${BOLD}${MAGENTA}\]\u"; #User
+PS1="\[${BOLD}${MAGENTA}\]\u "; #User
 PS1+="\[$WHITE\]at ";
 PS1+="\[$ORANGE\]\h "; #Host
 PS1+="\[$WHITE\]in ";
