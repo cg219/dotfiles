@@ -66,6 +66,7 @@ brew install tree
 brew install wget
 brew install trash
 brew install mas
+brew install grep --with-default-names
 brew install Schniz/tap/fnm
 
 echo "Install Apps..."
