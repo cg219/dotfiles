@@ -2,7 +2,7 @@
 # Fresh Dev Setup OSX
 
 echo "Setting up Mac..."
-source ./setup/ssh.sh
+source ~/dotfiles/setup/ssh.sh
 
 read -p "Hit [Enter] to continue once public key is added..."
 echo "Install Xcode Dev Tools..."
@@ -14,12 +14,12 @@ echo "Setting up git config..."
 git config --global user.name $full_name
 git config --global user.email $email
 
-source ./setup/dots.sh
-source ./setup/brew.sh
-source ./setup/node.sh
-source ./setup/subl-osx.sh
-source ./setup/appstore.sh
-source ./setup/workspace.sh
-source ./setup/defaults-osx.sh
+source ~/dotfiles/setup/dots.sh
+source ~/dotfiles/setup/brew.sh
+source ~/dotfiles/setup/node.sh
+source ~/dotfiles/setup/subl-osx.sh
+source ~/dotfiles/setup/appstore.sh
+source ~/dotfiles/setup/workspace.sh
+source ~/dotfiles/setup/defaults-osx.sh
 
 echo "All Set!!!!!"
