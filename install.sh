@@ -142,6 +142,7 @@ mkdir apps
 
 echo "Setup defaults..."
 
+sudo spctl --master-disable
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 0
 defaults write com.apple.keyboard.fnState -int 1
