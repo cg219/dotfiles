@@ -72,7 +72,6 @@ brew install grep
 brew install Schniz/tap/fnm
 
 echo "Install Apps..."
-brew cask install nordvpn
 brew cask install sf-symbols
 brew cask install alfred
 brew cask install android-studio
@@ -132,6 +131,7 @@ source ~/.bash_profile
 read -p "Hit [Enter] after you sign in to the App Store..."
 echo "Install App Store apps..."
 mas install 918858936 # Airmail
+mas install 1116599239 # NordVPN
 mas install 497799835 # Xcode
 
 echo "Setup Folders..."

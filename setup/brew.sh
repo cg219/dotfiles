@@ -17,7 +17,6 @@ brew install grep
 brew install Schniz/tap/fnm
 
 echo "Install Apps..."
-brew cask install nordvpn
 brew cask install sf-symbols
 brew cask install alfred
 brew cask install android-studio
