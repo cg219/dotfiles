@@ -6,6 +6,7 @@ alias apps="cd ~/apps"
 
 alias gateo="sudo spctl --master-disable"
 alias gatec="sudo spctl --master-enable"
+alias getssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 alias ..="cd ../"
 alias ...="cd ../../"
