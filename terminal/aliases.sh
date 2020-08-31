@@ -11,7 +11,7 @@ alias getssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 alias ..="cd ../"
 alias ...="cd ../../"
 
-alias ginit="git init"
+alias gin="git init"
 alias gad="git add"
 alias gomit="git commit -m"
 alias gush="git push"
