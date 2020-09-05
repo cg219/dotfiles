@@ -1,5 +1,3 @@
-source ./.bash_profile
+#!/bin/bash
 
-# fnm
-export PATH=$HOME/.fnm:$PATH
-eval "`fnm env --multi`"
+source $HOME/.bash_profile

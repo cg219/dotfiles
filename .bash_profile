@@ -7,6 +7,7 @@ PATH="$PATH:/usr/local/mysql/bin"
 PATH="$PATH:/usr/local/bin"
 PATH="$PATH:~/bin"
 PATH="$PATH:/usr/local/bin:/usr/local/sbin"
+PATH="$PATH:~/.fnm"
 
 if test $(which fnm)
 then
