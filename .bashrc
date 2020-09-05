@@ -1,5 +1,5 @@
 source ./.bash_profile
 
 # fnm
-export PATH=/home/kreativemente/.fnm:$PATH
+export PATH=$HOME/.fnm:$PATH
 eval "`fnm env --multi`"
