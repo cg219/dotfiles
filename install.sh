@@ -31,7 +31,6 @@ echo "Paste this public key into Github settings"
 
 open https://github.com/settings/keys
 
-
 read -p "Hit [Enter] to continue once public key is added..."
 echo "Install Xcode Dev Tools..."
 xcode-select --install
