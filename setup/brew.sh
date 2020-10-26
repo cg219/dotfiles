@@ -22,6 +22,7 @@ brew cask install alfred
 brew cask install android-studio
 brew cask install brave-browser
 brew cask install chromium
+brew cask install google-chrome
 brew cask install cyberduck
 brew cask install docker
 brew cask install dropbox
