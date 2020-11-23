@@ -90,6 +90,7 @@ brew cask install skype
 brew cask install slack
 brew cask install spotify
 brew cask install sublime-text
+brew cask install sublime-merge
 brew cask install vlc
 
 echo "Cleanup Homebrew..."
@@ -130,7 +131,6 @@ source ~/.bash_profile
 
 read -p "Hit [Enter] after you sign in to the App Store..."
 echo "Install App Store apps..."
-mas install 918858936 # Airmail
 mas install 1116599239 # NordVPN
 mas install 497799835 # Xcode
 
