@@ -9,7 +9,7 @@ fnm default latest
 source ~/.bash_profile
 
 echo "Setting up nodeJS environments..."
-npm_installs="firebase-tools ghost-cli nativescript nodemon parcel-bundler vercel"
+npm_installs="firebase-tools ghost-cli nativescript nodemon parcel-bundler vercel jshint eslint eslint_d"
 fnm use lts
 npm i -g $npm_installs
 fnm use legacy
