@@ -17,27 +17,28 @@ brew install grep
 brew install Schniz/tap/fnm
 
 echo "Install Apps..."
-brew cask install sf-symbols
-brew cask install alfred
-brew cask install android-studio
-brew cask install brave-browser
-brew cask install chromium
-brew cask install google-chrome
-brew cask install cyberduck
-brew cask install docker
-brew cask install dropbox
-brew cask install iterm2
-brew cask install ledger-live
-brew cask install notion
-brew cask install postman
-brew cask install rightfont
-brew cask install sketch
-brew cask install skype
-brew cask install slack
-brew cask install spotify
-brew cask install sublime-text
-brew cask install sublime-merge
-brew cask install vlc
+brew install --cask sf-symbols
+brew install --cask alfred
+brew install --cask android-studio
+brew install --cask brave-browser
+brew install --cask chromium
+brew install --cask google-chrome
+brew install --cask cyberduck
+brew install --cask docker
+brew install --cask dropbox
+brew install --cask iterm2
+brew install --cask ledger-live
+brew install --cask nordpass
+brew install --cask notion
+brew install --cask postman
+brew install --cask rightfont
+brew install --cask sketch
+brew install --cask skype
+brew install --cask slack
+brew install --cask spotify
+brew install --cask sublime-text
+brew install --cask sublime-merge
+brew install --cask vlc
 
 echo "Cleanup Homebrew..."
 brew cleanup
