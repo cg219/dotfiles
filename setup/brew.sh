@@ -20,12 +20,15 @@ echo "Install Apps..."
 brew install --cask sf-symbols
 brew install --cask alfred
 brew install --cask android-studio
+brew install --cask balenaetcher
 brew install --cask brave-browser
 brew install --cask chromium
 brew install --cask google-chrome
 brew install --cask cyberduck
+brew install --cask discord
 brew install --cask docker
 brew install --cask dropbox
+brew install --cask firefox
 brew install --cask iterm2
 brew install --cask ledger-live
 brew install --cask nordpass
