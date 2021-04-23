@@ -101,12 +101,12 @@ echo "Cleanup Homebrew..."
 brew cleanup
 
 echo "Install nodeJS..."
-fnm install latest
-fnm install latest-erbium
-fnm install latest-dubnium
-fnm alias latest-erbium lts
-fnm alias latest-dubnium legacy
-fnm default latest
+fnm install 16
+fnm install lts/fermium
+fnm install lts/erbium
+fnm alias lts/fermium lts
+fnm alias lts/erbium legacy
+fnm alias 16 latest
 
 source ~/.bash_profile
 
