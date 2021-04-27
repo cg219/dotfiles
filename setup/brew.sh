@@ -15,6 +15,7 @@ brew install trash
 brew install mas
 brew install grep
 brew install Schniz/tap/fnm
+brew install go
 
 echo "Install Apps..."
 brew install --cask sf-symbols
