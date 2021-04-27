@@ -8,7 +8,6 @@ PATH="$PATH:/usr/local/bin"
 PATH="$PATH:~/bin"
 PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 PATH="$PATH:~/.fnm"
-PATH="$PATH:/usr/local/go/bin"
 
 if test $(which fnm)
 then
