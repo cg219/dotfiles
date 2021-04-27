@@ -8,6 +8,7 @@ PATH="$PATH:/usr/local/bin"
 PATH="$PATH:~/bin"
 PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 PATH="$PATH:~/.fnm"
+PATH="$PATH:/usr/local/go/bin"
 
 if test $(which fnm)
 then
@@ -15,6 +16,7 @@ then
 fi
 
 export PATH=$PATH
+export GOPATH=$HOME/development/go
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/clementegomez/google-cloud-sdk/path.bash.inc' ]; then . '/Users/clementegomez/google-cloud-sdk/path.bash.inc'; fi
