@@ -124,6 +124,13 @@ source ~/.bash_profile
 
 cd ~
 
+echo "Install Go mods..."
+go get golang.org/x/tools/gopls@latest
+
+source ~/.bash_profile
+
+cd ~
+
 echo "Setup Sublime Text..."
 git clone git@github.com:cg219/sublime-settings.git
 subl
