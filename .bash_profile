@@ -14,7 +14,7 @@ PATH="$PATH:$GOPATH/bin"
 
 if test $(which fnm)
 then
-    eval "$(fnm env --multi)"
+    eval "$(fnm env)"
 fi
 
 export PATH=$PATH
