@@ -41,6 +41,7 @@ echo "Setting up git config..."
 
 git config --global user.name $full_name
 git config --global user.email $email
+git config --global init.defaultBranch main
 
 echo "Defaulting to bash..."
 chsh -s /bin/bash
