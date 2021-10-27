@@ -16,6 +16,7 @@ brew install mas
 brew install grep
 brew install Schniz/tap/fnm
 brew install go
+brew install deno
 
 echo "Install Apps..."
 brew install --cask sf-symbols
