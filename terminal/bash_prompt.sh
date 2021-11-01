@@ -5,6 +5,8 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
 fi
 
 if tput setaf 1 &> /dev/null; then tput sgr0
+    BOLD=$(tput bold)
+    RESET=$(tput sgr0)
     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
         MAGENTA=$(tput setaf 9)
         ORANGE=$(tput setaf 172)
@@ -18,15 +20,13 @@ if tput setaf 1 &> /dev/null; then tput sgr0
         PURPLE=$(tput setaf 1)
         WHITE=$(tput setaf 7)
     fi
-    BOLD=$(tput bold)
-    RESET=$(tput sgr0)
 else
     MAGENTA="\033[1;31m"
     ORANGE="\033[1;33m"
     GREEN="\033[1;32m"
     PURPLE="\033[1;35m"
     WHITE="\033[1;37m"
-    BOLD=""
+    BOLD="\033[1m"
     RESET="\033[m"
 fi
 
@@ -37,14 +37,14 @@ parse_git_branch () {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-PS1="\[${BOLD}${MAGENTA}\]\u "; #User
-PS1+="\[$WHITE\]at ";
-PS1+="\[$ORANGE\]\h "; #Host
-PS1+="\[$WHITE\]in ";
-PS1+="\[$GREEN\]\w"; #Full Path
-PS1+="\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)"; #Git
-PS1+="\[$WHITE\]\n\$ ";
-PS1+="\[$RESET\]"; #Reset
+PS1="\[${MAGENTA}\]\u "; #User
+PS1+="\[${WHITE}\]at ";
+PS1+="\[${ORANGE}\]\h "; #Host
+PS1+="\[${WHITE}\]in ";
+PS1+="\[${GREEN}\]\w"; #Full Path
+PS1+="\[${WHITE}\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[${PURPLE}\]\$(parse_git_branch)"; #Git
+PS1+="\[${WHITE}\]\n\$ ";
+PS1+="\[${RESET}\]"; #Reset
 
 #Always use color output for `ls`
 
