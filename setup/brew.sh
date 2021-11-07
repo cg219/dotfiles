@@ -5,6 +5,7 @@ fi
 
 echo "Updating Homebrew Repository..."
 brew update
+brew tap ethereum/ethereum
 
 echo "Installing Tools with Homebrew..."
 brew install git-extras
@@ -17,6 +18,7 @@ brew install grep
 brew install Schniz/tap/fnm
 brew install go
 brew install deno
+brew install solidity
 
 echo "Install Apps..."
 brew install --cask sf-symbols
