@@ -12,11 +12,6 @@ PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 PATH="$PATH:~/.fnm"
 PATH="$PATH:$GOPATH/bin"
 
-if test $(which fnm)
-then
-    eval "$(fnm env)"
-fi
-
 export PATH=$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -24,3 +19,6 @@ if [ -f '/Users/clementegomez/google-cloud-sdk/path.bash.inc' ]; then . '/Users/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/clementegomez/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/clementegomez/google-cloud-sdk/completion.bash.inc'; fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(fnm env)"
