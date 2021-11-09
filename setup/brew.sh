@@ -15,7 +15,7 @@ brew install wget
 brew install trash
 brew install mas
 brew install grep
-brew install Schniz/tap/fnm
+brew install fnm
 brew install go
 brew install deno
 brew install solidity

@@ -70,7 +70,7 @@ brew install wget
 brew install trash
 brew install mas
 brew install grep
-brew install Schniz/tap/fnm
+brew install fnm
 brew install go
 brew install deno
 brew install solidity
@@ -139,9 +139,9 @@ echo "Setup Sublime Text..."
 git clone git@github.com:cg219/sublime-settings.git
 subl
 osascript -e 'quit app "Sublime Text"'
-trash ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+trash ~/Library/Application\ Support/Sublime\ Text/Packages/User
 mv sublime-settings User
-ln -s ~/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+ln -s ~/User ~/Library/Application\ Support/Sublime\ Text/Packages
 
 source ~/.bash_profile
 
