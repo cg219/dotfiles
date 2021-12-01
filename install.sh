@@ -77,6 +77,9 @@ brew install solidity
 
 echo "Install Apps..."
 brew install --cask sf-symbols
+brew install --cask affinity-designer
+brew install --cask affinity-photo
+brew install --cask affinity-publisher
 brew install --cask alfred
 brew install --cask android-studio
 brew install --cask balenaetcher
