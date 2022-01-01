@@ -93,7 +93,6 @@ brew install --cask firefox
 brew install --cask iterm2
 brew install --cask ledger-live
 brew install --cask nordpass
-brew install --cask notion
 brew install --cask postman
 brew install --cask rightfont
 brew install --cask sketch
