@@ -31,7 +31,6 @@ brew install --cask balenaetcher
 brew install --cask brave-browser
 brew install --cask chromium
 brew install --cask google-chrome
-brew install --cask cyberduck
 brew install --cask discord
 brew install --cask docker
 brew install --cask dropbox
