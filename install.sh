@@ -72,7 +72,6 @@ brew install mas
 brew install grep
 brew install fnm
 brew install go
-brew install deno
 brew install solidity
 
 echo "Install Apps..."
@@ -105,6 +104,9 @@ brew install --cask vlc
 
 echo "Cleanup Homebrew..."
 brew cleanup
+
+echo "Installing Deno..."
+curl -fsSL https://deno.land/install.sh | sh
 
 echo "Install nodeJS..."
 fnm install 16

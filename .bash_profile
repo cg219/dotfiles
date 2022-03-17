@@ -4,6 +4,7 @@ do
 done
 
 export GOPATH=$HOME/development/go
+export DENO_INSTALL=$HOME/.deno
 
 PATH="$PATH:/usr/local/mysql/bin"
 PATH="$PATH:/usr/local/bin"
@@ -11,6 +12,7 @@ PATH="$PATH:~/bin"
 PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 PATH="$PATH:~/.fnm"
 PATH="$PATH:$GOPATH/bin"
+PATH="$DENO_INSTALL/bin:$PATH"
 
 export PATH=$PATH
 
