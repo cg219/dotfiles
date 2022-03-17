@@ -1,3 +1,6 @@
+echo "Installing Deno..."
+curl -fsSL https://deno.land/install.sh | sh
+
 echo "Install nodeJS..."
 fnm install 16
 fnm install lts/fermium
