@@ -22,7 +22,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(fnm env)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/mentegee/sdks/google-cloud-sdk/path.bash.inc' ]; then . '/Users/mentegee/sdks/google-cloud-sdk/path.bash.inc'; fi
+if [ -f $SDKS/google-cloud-sdk/path.bash.inc ]; then . $SDKS/google-cloud-sdk/path.bash.inc; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/mentegee/sdks/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/mentegee/sdks/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f $SDKS/google-cloud-sdk/completion.bash.inc ]; then . $SDKS/google-cloud-sdk/completion.bash.inc; fi
