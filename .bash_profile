@@ -6,6 +6,7 @@ done
 export GOPATH=$HOME/development/go
 export DENO_INSTALL=$HOME/.deno
 export SDKS=$HOME/sdks
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 PATH="$PATH:/usr/local/mysql/bin"
 PATH="$PATH:/usr/local/bin"
