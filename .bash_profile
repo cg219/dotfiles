@@ -16,11 +16,14 @@ PATH="$PATH:~/.fnm"
 PATH="$PATH:$GOPATH/bin"
 PATH="$PATH:$DENO_INSTALL/bin"
 PATH="$PATH:$SDKS"
+PATH="$PATH:$HOME/.cargo/bin"
+PATH="$PATH:$HOME/Library/Application Support/edgedb/bin"
 
 export PATH=$PATH
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(fnm env)"
+# . "$HOME/.cargo/env"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f $SDKS/google-cloud-sdk/path.bash.inc ]; then . $SDKS/google-cloud-sdk/path.bash.inc; fi
