@@ -26,10 +26,11 @@ brew install --cask affinity-photo
 brew install --cask affinity-publisher
 brew install --cask alfred
 brew install --cask android-studio
+brew install --cask arc
 brew install --cask balenaetcher
-brew install --cask brave-browser
-brew install --cask chromium
-brew install --cask google-chrome
+brew install --cask bruno
+brew install --cask cron
+brew install --cask db-browser-for-sqlite
 brew install --cask discord
 brew install --cask docker
 brew install --cask dropbox
@@ -37,9 +38,8 @@ brew install --cask firefox
 brew install --cask iterm2
 brew install --cask ledger-live
 brew install --cask nordpass
-brew install --cask postman
+brew install --cask obsidian
 brew install --cask rightfont
-brew install --cask sketch
 brew install --cask skype
 brew install --cask slack
 brew install --cask spotify
@@ -48,4 +48,4 @@ brew install --cask sublime-merge
 brew install --cask vlc
 
 echo "Cleanup Homebrew..."
-brew cleanup
+brew cleanu

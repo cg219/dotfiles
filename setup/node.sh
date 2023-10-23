@@ -2,12 +2,12 @@ echo "Installing Deno..."
 curl -fsSL https://deno.land/install.sh | sh
 
 echo "Install nodeJS..."
-fnm install 16
-fnm install lts/fermium
-fnm install lts/erbium
-fnm alias lts/fermium lts
-fnm alias lts/erbium legacy
-fnm alias 16 latest
+fnm install 20
+fnm install lts/hydrogen
+fnm install lts/gallium
+fnm alias lts/hydrogen lts
+fnm alias lts/gallium legacy
+fnm alias 20 latest
 
 source ~/.bash_profile
 

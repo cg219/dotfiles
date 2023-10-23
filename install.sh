@@ -81,10 +81,11 @@ brew install --cask affinity-photo
 brew install --cask affinity-publisher
 brew install --cask alfred
 brew install --cask android-studio
+brew install --cask arc
 brew install --cask balenaetcher
-brew install --cask brave-browser
-brew install --cask chromium
-brew install --cask google-chrome
+brew install --cask bruno
+brew install --cask cron
+brew install --cask db-browser-for-sqlite
 brew install --cask discord
 brew install --cask docker
 brew install --cask dropbox
@@ -92,9 +93,8 @@ brew install --cask firefox
 brew install --cask iterm2
 brew install --cask ledger-live
 brew install --cask nordpass
-brew install --cask postman
+brew install --cask obsidian
 brew install --cask rightfont
-brew install --cask sketch
 brew install --cask skype
 brew install --cask slack
 brew install --cask spotify
@@ -109,12 +109,12 @@ echo "Installing Deno..."
 curl -fsSL https://deno.land/install.sh | sh
 
 echo "Install nodeJS..."
-fnm install 16
-fnm install lts/fermium
-fnm install lts/erbium
-fnm alias lts/fermium lts
-fnm alias lts/erbium legacy
-fnm alias 16 latest
+fnm install 20
+fnm install lts/hydrogen
+fnm install lts/gallium
+fnm alias lts/hydrogen lts
+fnm alias lts/gallium legacy
+fnm alias 20 latest
 
 source ~/.bash_profile
 
@@ -150,7 +150,7 @@ source ~/.bash_profile
 
 read -p "Hit [Enter] after you sign in to the App Store..."
 echo "Install App Store apps..."
-mas install 905953485 # NordVPN
+mas install 1116599239 # NordVPN
 mas install 497799835 # Xcode
 
 echo "Setup Folders..."
