@@ -47,4 +47,4 @@ brew install --cask sublime-merge
 brew install --cask vlc
 
 echo "Cleanup Homebrew..."
-brew cleanu
+brew cleanup

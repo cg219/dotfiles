@@ -43,15 +43,12 @@ git config --global user.name $full_name
 git config --global user.email $email
 git config --global init.defaultBranch main
 
-echo "Defaulting to bash..."
-chsh -s /bin/bash
-
 echo "Setup dotfiles..."
 cd ~
 git clone git@github.com:cg219/dotfiles.git
-ln -s ~/dotfiles/.bash_profile ~/.bash_profile
-ln -s ~/dotfiles/.bashrc ~/.bashrc
-source ~/.bash_profile
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.zshenv ~/.zshenv
+source ~/.zshrc
 
 echo "Installing Homebrew..."
 if test !$(which brew); then
@@ -115,7 +112,7 @@ fnm alias lts/hydrogen lts
 fnm alias lts/gallium legacy
 fnm alias 20 latest
 
-source ~/.bash_profile
+source ~/.zshrc
 
 echo "Setting up nodeJS environments..."
 npm_installs="firebase-tools ghost-cli nodemon jshint eslint eslint_d pkg"
@@ -126,14 +123,14 @@ npm i -g $npm_installs
 fnm use latest
 npm i -g $npm_installs
 
-source ~/.bash_profile
+source ~/.zshrc
 
 cd ~
 
 echo "Install Go mods..."
 go get golang.org/x/tools/gopls@latest
 
-source ~/.bash_profile
+source ~/.zshrc
 
 cd ~
 
@@ -145,7 +142,7 @@ trash ~/Library/Application\ Support/Sublime\ Text/Packages/User
 mv sublime-settings User
 ln -s ~/User ~/Library/Application\ Support/Sublime\ Text/Packages
 
-source ~/.bash_profile
+source ~/.zshrc
 
 read -p "Hit [Enter] after you sign in to the App Store..."
 echo "Install App Store apps..."
@@ -184,6 +181,5 @@ defaults write com.apple.dock mineffect -string "scale"
 defaults write com.apple.dock mineffect -string "scale"
 
 killall Finder
-
 
 echo "All Set!!!!!"

@@ -1,4 +1,9 @@
-for file in ~/dotfiles/terminal/*
+for file in ~/dotfiles/terminal/bash/*
+do
+    source $file
+done
+
+for file in ~/dotfiles/terminal/all/*
 do
     source $file
 done
