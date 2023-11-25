@@ -9,7 +9,7 @@ fnm alias lts/hydrogen lts
 fnm alias lts/gallium legacy
 fnm alias 20 latest
 
-source ~/.bash_profile
+source ~/.zshrc
 
 echo "Setting up nodeJS environments..."
 npm_installs="firebase-tools ghost-cli nodemon jshint eslint eslint_d pkg"
@@ -20,4 +20,4 @@ npm i -g $npm_installs
 fnm use latest
 npm i -g $npm_installs
 
-source ~/.bash_profile
+source ~/.zshrc
