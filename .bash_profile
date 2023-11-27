@@ -1,11 +1,11 @@
-for file in ~/dotfiles/terminal/bash/*
+for file in ~/dotfiles/terminal/bash/*(N);
 do
-    source $file
+    if [ -f "$file" ]; then source $file; fi
 done
 
-for file in ~/dotfiles/terminal/all/*
+for file in ~/dotfiles/terminal/all/*(N);
 do
-    source $file
+    if [ -f "$file" ]; then source $file; fi
 done
 
 export GOPATH=$HOME/development/go
