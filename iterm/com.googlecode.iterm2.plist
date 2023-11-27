@@ -16,6 +16,8 @@
 	<false/>
 	<key>ClosingHotkeySwitchesSpaces</key>
 	<false/>
+	<key>Command</key>
+	<string></string>
 	<key>CommandSelection</key>
 	<true/>
 	<key>Control</key>
