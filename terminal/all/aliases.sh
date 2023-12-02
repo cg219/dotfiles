@@ -3,6 +3,8 @@ alias desk="cd ~/Desktop"
 alias web="cd ~/websites"
 alias dev="cd ~/development"
 alias apps="cd ~/apps"
+alias nv="nvim"
+alias nnn="nvim ."
 
 alias gateo="sudo spctl --master-disable"
 alias gatec="sudo spctl --master-enable"
