@@ -18,6 +18,7 @@ alias gad="git add"
 alias gomit="git commit -m"
 alias gush="git push"
 alias gull="git pull"
+alias gsus="git status"
 
 alias today="git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all"
 alias yesterday="git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all"
