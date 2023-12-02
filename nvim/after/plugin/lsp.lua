@@ -6,7 +6,7 @@ lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
-require('mason').setup({})
+require('mason').setup({ "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "swift_msonls" })
 require('mason-lspconfig').setup({
   ensure_installed = {},
   handlers = {
