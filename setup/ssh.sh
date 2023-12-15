@@ -4,7 +4,7 @@ read -p "Enter Email: " email
 
 echo "Creating SSH Key..."
 
-ssh-keygen -t rsa -b 4096 -C $email
+ssh-keygen -t ed25519 -b 4096 -C $email
 
 echo "Public Key Created ..."
 echo "Adding public key to ssh-agent..."
