@@ -1,4 +1,5 @@
-vim.opt.guicursor= ""
+vim.opt.guicursor = ""
+vim.opt.clipboard = "unnamed"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -25,7 +26,7 @@ vim.opt.scrolloff = 9
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "120"
 
 vim.opt.updatetime = 50
 

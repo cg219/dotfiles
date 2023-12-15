@@ -8,7 +8,7 @@ read -p "Enter Email: " email
 
 echo "Creating SSH Key..."
 
-ssh-keygen -t rsa -b 4096 -C $email
+ssh-keygen -t ed25519 -b 4096 -C $email
 
 echo "Public Key Created ..."
 echo "Adding public key to ssh-agent..."
@@ -48,6 +48,7 @@ cd ~
 git clone git@github.com:cg219/dotfiles.git
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.zshenv ~/.zshenv
+ln -s ~/dotfiles/nvim ~/.config/
 source ~/.zshrc
 
 echo "Installing Homebrew..."
@@ -69,6 +70,7 @@ brew install mas
 brew install grep
 brew install fnm
 brew install go
+brew install nvim
 
 echo "Install Apps..."
 brew install --cask sf-symbols
