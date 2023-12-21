@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/Users/mentegee/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
+  harpoon = {
+    loaded = true,
+    path = "/Users/mentegee/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/Users/mentegee/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",

@@ -42,4 +42,21 @@ return require('packer').startup(function(use)
   use {
       "windwp/nvim-autopairs",
   }
+  use "nvim-lua/plenary.nvim" -- don't forget to add this one if you don't have it yet!
+  use {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      requires = { {"nvim-lua/plenary.nvim"} }
+  }
+
+  use {
+      "NeogitOrg/neogit",
+      dependencies = {
+          "nvim-lua/plenary.nvim",         -- required
+          "sindrets/diffview.nvim",        -- optional - Diff integration
+          -- Only one of these is needed, not both.
+          "nvim-telescope/telescope.nvim", -- optional
+      },
+      config = true
+  }
 end)
