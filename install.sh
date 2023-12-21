@@ -22,7 +22,7 @@ brew install fnm
 brew install go
 brew install nvim
 brew install libfido2
-brew install openssh
+# brew install openssh
 
 echo "Install Apps..."
 brew install --cask sf-symbols
