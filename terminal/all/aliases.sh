@@ -23,6 +23,8 @@ alias gsus="git status"
 alias today="git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all"
 alias yesterday="git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all"
 
+alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && nnn"
+
 # alias ssh="/opt/homebrew/bin/ssh"
 # alias ssh-agent="/opt/homebrew/bin/ssh-agent"
 # alias ssh-keygen="/opt/homebrew/bin/ssh-keygen"
