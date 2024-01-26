@@ -2,6 +2,11 @@ print("Setting up Mac");
 print("Please enter information for Git")
 
 local config = {}
+
+local function reloadshell()
+    os.execute("zsh -c source ~/.zshrc")
+end
+
 local function setupssh()
     local keyname = "github_ed25519"
 
@@ -40,10 +45,6 @@ local function setupssh()
 
     print("SSH configured. Public Key has been copoied to the clipboard.")
     print("Add the key to your Github Settings.")
-    print("Hit [Enter] to continue once public key is added...")
-
-    os.execute("open https://github.com/settings/keys")
-    io.read()
 end
 
 local function setupgit()
@@ -54,6 +55,102 @@ local function setupgit()
    os.execute("git config --global init.defaultBranch main")
 end
 
-setupssh()
-setupgit()
+local function setupdotfiles()
+    print("Setting up dotfiles")
 
+    local home = os.getenv("HOME");
+
+    os.execute("cd ~; mkdir websites; mkdir development; mkdir apps; mkdir .config")
+    os.execute("cd ~; git clone git@github.com:cg219/dotfiles.git; git clone git@github.com:cg219/sublime-settings.git; git clone --depth 1 https://github.com/wbthomason/packer.nvim")
+    os.execute("cd ~; sudo cp -R packer.nvim ~/.local/share/nvim/site/pack/packer/start/; trash packer.nvim")
+    os.execute("trash ~/.zshrc")
+    os.execute("ln -s ~/dotfiles/.zshrc ~/.zshrc")
+    os.execute("ln -s ~/dotfiles/.zshenv ~/.zshenv")
+    os.execute("ln -s ~/dotfiles/nvim ~/.config/nvim")
+    os.execute("trash ~/.zprofile")
+    os.execute("subl")
+    os.execute("osascript -e 'quit app \"Sublime Text\"'")
+    os.execute(string.format("trash \"%s/Library/Application Support/Sublime Text/Packages/User\"", home))
+    os.execute("sudo cp -R ~/sublime-settings ~/User; trash ~/sublime-settings")
+    os.execute(string.format("ln -s ~/User \"%s/Library/Application Support/Sublime Text/Packages\"", home))
+end
+
+local function setupjsenv()
+    local nodes = {
+        { "lts/iron", "latest" },
+        { "lts/hydrogen", "lts"},
+        { "lts/gallium", "legacy"}
+    }
+
+    print("Installing Deno")
+    os.execute("curl -fsSL https://deno.land/install.sh | zsh")
+
+    local npm_installs = "firebase-tools ghost-cli nodemon pkg"
+
+    for _, value in pairs(nodes) do
+        print(string.format("Installing NodeJS: %s", value[1]))
+
+        os.execute(string.format("eval \"fnm env\"; fnm install %s", value[1]))
+        os.execute(string.format("eval \"fnm env\"; fnm alias %s %s", value[1], value[2]))
+        os.execute(string.format("eval \"fnm env\"; fnm use %s; npm i -g %s", value[2], npm_installs))
+    end
+
+    reloadshell()
+end
+
+local function setupmacapps()
+    print("Install App Store apps...")
+    os.execute("mas install 1116599239") -- NordVPN
+    os.execute("mas install 497799835") -- Xcode
+end
+
+local function setupdefaults()
+    local calls = {
+        "sudo spctl --master-disable",
+        "defaults write NSGlobalDomain AppleInterfaceStyle -string \"Dark\"",
+        "defaults write NSGlobalDomain AppleKeyboardUIMode -int 0",
+        "defaults write com.apple.keyboard.fnState -int 1",
+        "defaults write com.apple.mouse.scaling -float 1.5",
+        "defaults write com.apple.swipescrolldirection -int 1",
+        "defaults write com.apple.trackpad.forceClick -int 1",
+        "defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true",
+        "defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true",
+        "defaults write com.apple.dock autohide -bool true",
+        "defaults write com.apple.dock \"dashboard-in-overlay\" -int 1",
+        "defaults write com.apple.dock \"expose-group-apps\" -int 0",
+        "defaults write com.apple.dock \"expose-group-by-app\" -int 0",
+        "defaults write com.apple.dock largesize -int 96",
+        "defaults write com.apple.dock magnification -bool true",
+        "defaults write com.apple.dock mineffect -string \"scale\"",
+        "defaults write com.apple.dock orientation -string \"left\"",
+        "defaults write com.apple.dock tilesize -int 31",
+        "defaults write com.apple.dock mineffect -string \"scale\"",
+        "defaults write com.apple.dock mineffect -string \"scale\"",
+        "defaults write com.apple.dock mineffect -string \"scale\"",
+        "defaults write com.apple.dock mineffect -string \"scale\"",
+        "killall Finder"
+    }
+
+    for _,call in pairs(calls) do
+        os.execute(string.format("%s", call))
+    end
+end
+
+setupssh()
+
+print("Hit [Enter] to continue once public key is added...")
+os.execute("open https://github.com/settings/keys")
+io.read()
+
+setupgit()
+os.execute("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"")
+setupdotfiles()
+setupjsenv()
+
+print("Hit [Enter] after you sign in to the App Store...")
+io.read()
+
+-- setupmacapps()
+setupdefaults()
+
+print("All Set!!!")
