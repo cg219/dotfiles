@@ -10,7 +10,7 @@ neogit.setup {
   -- Changes what mode the Commit Editor starts in. `true` will leave nvim in normal mode, `false` will change nvim to
   -- insert mode, and `"auto"` will change nvim to insert mode IF the commit message is empty, otherwise leaving it in
   -- normal mode.
-  disable_insert_on_commit = true,
+  disable_insert_on_commit = "auto",
   -- When enabled, will watch the `.git/` directory for changes and refresh the status buffer in response to filesystem
   -- events.
   filewatcher = {
@@ -42,6 +42,12 @@ neogit.setup {
     "NeogitPullPopup--rebase",
     "NeogitCommitPopup--allow-empty",
     "NeogitRevertPopup--no-edit",
+  },
+  -- Configure highlight group features
+  highlight = {
+    italic = true,
+    bold = true,
+    underline = true
   },
   -- Set to false if you want to be responsible for creating _ALL_ keymappings
   use_default_keymaps = true,
@@ -230,7 +236,6 @@ neogit.setup {
       ["<c-s>"] = "StageAll",
       ["u"] = "Unstage",
       ["U"] = "UnstageStaged",
-      ["d"] = "DiffAtFile",
       ["$"] = "CommandHistory",
       ["#"] = "Console",
       ["Y"] = "YankSelected",
