@@ -60,10 +60,11 @@ local function setupdotfiles()
 
     local home = os.getenv("HOME");
 
+    os.execute("cd ~; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh")
     os.execute("cd ~; mkdir websites; mkdir development; mkdir apps; mkdir .config")
+    os.execute("cd ~; mkdir -p .local/share/nvim/site/pack/packer/start")
     os.execute("cd ~; git clone git@github.com:cg219/dotfiles.git; git clone git@github.com:cg219/sublime-settings.git; git clone --depth 1 https://github.com/wbthomason/packer.nvim")
-    os.execute("cd ~; sudo cp -R packer.nvim ~/.local/share/nvim/site/pack/packer/start/; trash packer.nvim")
-    os.execute("trash ~/.zshrc")
+    os.execute("cd ~; sudo cp -R packer.nvim ~/.local/share/nvim/site/pack/packer/start/")
     os.execute("ln -s ~/dotfiles/.zshrc ~/.zshrc")
     os.execute("ln -s ~/dotfiles/.zshenv ~/.zshenv")
     os.execute("ln -s ~/dotfiles/nvim ~/.config/nvim")
@@ -90,9 +91,9 @@ local function setupjsenv()
     for _, value in pairs(nodes) do
         print(string.format("Installing NodeJS: %s", value[1]))
 
-        os.execute(string.format("eval \"fnm env\"; fnm install %s", value[1]))
-        os.execute(string.format("eval \"fnm env\"; fnm alias %s %s", value[1], value[2]))
-        os.execute(string.format("eval \"fnm env\"; fnm use %s; npm i -g %s", value[2], npm_installs))
+        os.execute(string.format("zsh -c eval \"fnm env\" && fnm install %s", value[1]))
+        os.execute(string.format("zsh -c eval \"fnm env\" && fnm alias %s %s", value[1], value[2]))
+        os.execute(string.format("zsh -c eval \"fnm env\" && fnm use %s; npm i -g %s", value[2], npm_installs))
     end
 
     reloadshell()
@@ -143,7 +144,6 @@ os.execute("open https://github.com/settings/keys")
 io.read()
 
 setupgit()
-os.execute("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"")
 setupdotfiles()
 setupjsenv()
 
