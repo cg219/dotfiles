@@ -27,7 +27,9 @@ return require('packer').startup(function(use)
   }
   -- Using Packer:
   use 'Mofiqul/dracula.nvim'
-  use ('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  use {
+      'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'
+  }
   use 'nvim-treesitter/playground'
   use 'mbbill/undotree'
   use {
