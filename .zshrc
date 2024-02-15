@@ -120,3 +120,5 @@ if [ -f $SDKS/google-cloud-sdk/path.zsh.inc ]; then . $SDKS/google-cloud-sdk/pat
 
 # The next line enables shell command completion for gcloud.
 if [ -f $SDKS/google-cloud-sdk/completion.zsh.inc ]; then . $SDKS/google-cloud-sdk/completion.zsh.inc; fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

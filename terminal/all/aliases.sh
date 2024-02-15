@@ -3,8 +3,8 @@ alias desk="cd ~/Desktop"
 alias web="cd ~/websites"
 alias dev="cd ~/development"
 alias apps="cd ~/apps"
-alias nv="nvim"
-alias nnn="nvim ."
+alias vim="nvim"
+alias n="nvim ."
 
 alias gateo="sudo spctl --master-disable"
 alias gatec="sudo spctl --master-enable"
@@ -23,7 +23,9 @@ alias gsus="git status"
 alias today="git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all"
 alias yesterday="git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all"
 
-alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && nnn"
+alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n"
+
+alias f="findproject"
 
 # alias ssh="/opt/homebrew/bin/ssh"
 # alias ssh-agent="/opt/homebrew/bin/ssh-agent"
