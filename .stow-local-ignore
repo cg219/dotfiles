@@ -1,0 +1,7 @@
+.git
+.gitignore
+.stow-local-ignore
+README.md
+terminal/
+iterm/
+install/
