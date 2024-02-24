@@ -25,6 +25,7 @@ brew install go
 brew install nvim
 brew install libfido2
 brew install lua
+brew install jesseduffield/lazygit/lazygit
 
 echo "Install Apps..."
 brew install --cask sf-symbols

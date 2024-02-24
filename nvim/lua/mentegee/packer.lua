@@ -57,7 +57,6 @@ return require('packer').startup(function(use)
   use {
       "windwp/nvim-autopairs",
   }
-  use "nvim-lua/plenary.nvim" -- don't forget to add this one if you don't have it yet!
   use {
       "ThePrimeagen/harpoon",
       branch = "harpoon2",
@@ -86,6 +85,13 @@ return require('packer').startup(function(use)
       'nvim-lualine/lualine.nvim',
       requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
+  use({
+      "kdheepak/lazygit.nvim",
+      -- optional for floating window border decoration
+      requires = {
+          "nvim-lua/plenary.nvim",
+      },
+  })
   if packer_bootstrap then
     require("packer").sync();
   end
