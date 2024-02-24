@@ -26,8 +26,10 @@ brew install nvim
 brew install libfido2
 brew install lua
 brew install jesseduffield/lazygit/lazygit
+brew tap homebrew/cask-fonts
 
 echo "Install Apps..."
+brew install --cask homebrew/cask-fonts/font-ubuntu-mono-nerd-font
 brew install --cask sf-symbols
 brew install --cask affinity-designer
 brew install --cask affinity-photo

@@ -1317,7 +1317,7 @@
 			<key>Hide After Opening</key>
 			<true/>
 			<key>Horizontal Spacing</key>
-			<real>1</real>
+			<real>1.0700000000000001</real>
 			<key>HotKey Activated By Modifier</key>
 			<false/>
 			<key>HotKey Alternate Shortcuts</key>
@@ -1667,11 +1667,11 @@
 			<key>Name</key>
 			<string>Mente</string>
 			<key>Non Ascii Font</key>
-			<string>Monaco 12</string>
+			<string>UbuntuMonoNF 16</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 12</string>
+			<string>UbuntuMonoNFM 18</string>
 			<key>Open Password Manager Automatically</key>
 			<false/>
 			<key>Option Key Sends</key>
