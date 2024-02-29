@@ -10,7 +10,7 @@ nmap("<C-u>", "<C-u>zz")
 
 nmap("<leader>u", ":UndotreeToggle<cr>")
 nmap("<leader>ut", ":Undotree<cr>")
-nmap("<leader>gi", ":LazyGit<cr>")
+nmap("<leader>gg", ":LazyGit<cr>")
 nmap("<leader>s", ":w<cr>")
 
 nfmap('<leader>ff', builtin.find_files)
