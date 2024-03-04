@@ -95,6 +95,7 @@ return require('packer').startup(function(use)
 
 	-- "gc" to comment visual regions/lines
 	use { 'numToStr/Comment.nvim', opts = {} }
+    use { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }}
 
 	if packer_bootstrap then
 		require("packer").sync();
