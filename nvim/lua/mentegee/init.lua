@@ -1,4 +1,4 @@
 require("mentegee.global")
-require("mentegee.packer")
+require("mentegee.lazy")
 require("mentegee.set")
 require("mentegee.remap")
