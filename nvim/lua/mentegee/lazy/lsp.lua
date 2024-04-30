@@ -109,6 +109,21 @@ return {
                 ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "swift_mesonls" },
                 handlers = {
                     lsp_zero.default_setup,
+                    gopls = function()
+                        lspconfig.gopls.setup({
+                            root_dir = lspconfig.util.root_pattern("go.mod", "go.sum"),
+                            settings = {
+                                gopls = {
+                                    usePlaceholsers = true,
+                                    analyses = {
+                                        unusedparams = true
+                                    },
+                                    staticcheck = true,
+                                    gofumpt = true
+                                }
+                            }
+                        })
+                    end,
                     tsserver = function()
                         lspconfig.tsserver.setup({
                             root_dir = lspconfig.util.root_pattern("package.json"),
