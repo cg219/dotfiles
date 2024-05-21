@@ -114,7 +114,7 @@ return {
                             root_dir = lspconfig.util.root_pattern("go.mod", "go.sum"),
                             settings = {
                                 gopls = {
-                                    usePlaceholsers = true,
+                                    usePlaceholders = false,
                                     analyses = {
                                         unusedparams = true
                                     },
