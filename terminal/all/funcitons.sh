@@ -9,7 +9,7 @@ function showfiles(){
 }
 
 function findproject() {
-    session=$(find ~/development/ActiveTheory ~/development ~/websites ~ -type d -mindepth 1 -maxdepth 1 | fzf)
+    session=$(find ~/development/ActiveTheory ~/development ~/websites ~/apps ~ -type d -mindepth 1 -maxdepth 1 | fzf)
     name=$(basename "$session" | tr . _)
     
     if ! tmux has-session -t "$name" >> /dev/null ; then
