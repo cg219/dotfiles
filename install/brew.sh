@@ -31,6 +31,7 @@ brew tap charmbracelet/tap
 brew install charmbracelet/tap/charm
 brew install charmbracelet/tap/skate
 brew install charmbracelet/tap/freeze
+brew install tursodatabase/tap/turso
 
 echo "Install Apps..."
 brew install --cask homebrew/cask-fonts/font-ubuntu-mono-nerd-font

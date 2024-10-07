@@ -18,3 +18,11 @@ function findproject() {
 
     tmux switch-client -t "$name"
 }
+
+function fuzzysession() {
+    session=$(tmux ls | fzf | sed 's/:.*//')
+
+    if [[ -n $session ]]; then
+        tmux switch-client -t "$session"
+    fi
+}

@@ -26,7 +26,7 @@ alias yesterday="git log --pretty=\"· %s\" --author='Clemente' --since=\"yester
 alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n"
 
 alias f="findproject"
-
+alias fs="fuzzysession"
 # alias ssh="/opt/homebrew/bin/ssh"
 # alias ssh-agent="/opt/homebrew/bin/ssh-agent"
 # alias ssh-keygen="/opt/homebrew/bin/ssh-keygen"
