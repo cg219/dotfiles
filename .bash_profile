@@ -16,7 +16,7 @@ export FZF_DEFAULT_OPTS='--tmux'
 
 PATH="$PATH:/usr/local/mysql/bin"
 PATH="$PATH:/usr/local/bin"
-PATH="$PATH:~/bin"
+PATH="$PATH:$HOME/bin"
 PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 PATH="$PATH:~/.fnm"
 PATH="$PATH:$GOPATH/bin"
