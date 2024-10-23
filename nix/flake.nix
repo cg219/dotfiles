@@ -4,7 +4,7 @@
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
         darwin.url = "github:LnL7/nix-darwin";
-        brew.url = "github:zhaofengli-wip/nix-homebrew";
+        nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
         brew-core = {
             url = "github:homebrew/homebrew-core";
             flake = false;
@@ -26,7 +26,7 @@
         # home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = inputs@{ self, darwin, nixpkgs, brew, brew-core, brew-cask, brew-charm, brew-ethereum };
+    outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-core, brew-cask, brew-charm, brew-ethereum }:
         let configuration = { pkgs, ... }: {
             nixpkgs.config.allowUnfree = true;
             # List packages installed in system profile. To search by name, run:
@@ -37,9 +37,7 @@
                 pkgs.gitflow
                 pkgs.tree
                 pkgs.wget
-                pkgs.trash
                 pkgs.mas
-                pkgs.grep
                 pkgs.fnm
                 pkgs.go
                 pkgs.lua
@@ -65,10 +63,8 @@
                 pkgs.vlc
             ];
 
-            brew = {
+            homebrew = {
                 enable = true;
-                enableRosetta = true;
-                user = "mentegee";
                 taps = {
                     "homebrew/homebrew-core" = brew-core;
                     "homebrew/homebrew-cask" = brew-cask;
@@ -91,9 +87,9 @@
                     "sf-symbols"
                     "skype"
                     "font-ubuntu-mono-nerd-font"
+                    "trash"
+                    "grep"
                 ];
-                mutableTaps = false;
-                autoMigrate = true;
             };
 
             # Auto upgrade nix package and the daemon service.
@@ -112,7 +108,7 @@
 
             # Used for backwards compatibility, please read the changelog before changing.
             # $ darwin-rebuild changelog
-            system.stateVersion = 5;
+            system.stateVersion = 4;
 
             # The platform the configuration will be used on.
             nixpkgs.hostPlatform = "aarch64-darwin";
@@ -123,15 +119,27 @@
             };
 
         };
-    in
-        {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."dev-macOS" = nix-darwin.lib.darwinSystem {
-        modules = [ configuration ];
-    };
+        in
+            {
+            # Build darwin flake using:
+            # $ darwin-rebuild build --flake .#simple
+            darwinConfigurations."dev-macOS" = darwin.lib.darwinSystem {
+                modules = [
+                    configuration
+                    nix-homebrew.darwinModules.nix-homebrew
+                    {
+                        nix-homebrew = {
+                            enable = true;
+                            enableRosetta = true;
+                            user = "mentegee";
+                            autoMigrate = true;
+                            mutableTaps = false;
+                        };
+                    }
+                ];
+            };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."dev-macOS".pkgs;
-};
-    }
+            # Expose the package set, including overlays, for convenience.
+            darwinPackages = self.darwinConfigurations."dev-macOS".pkgs;
+        };
+}
