@@ -27,7 +27,7 @@
     };
 
     outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-core, brew-cask, brew-charm, brew-ethereum }:
-        let configuration = { pkgs, ... }: {
+        let configuration = { pkgs, config, ... }: {
             nixpkgs.config.allowUnfree = true;
             # List packages installed in system profile. To search by name, run:
             # $ nix-env -qaP | grep wget
@@ -51,46 +51,71 @@
                 pkgs.tableplus
                 pkgs.discord
                 pkgs.docker
-                pkgs.firefox
-                pkgs.dropbox
-                pkgs.ledger-live-desktop
                 pkgs.obsidian
                 pkgs.slack
                 pkgs.spotify
-                pkgs.sublime
-                pkgs.sublime-merge
                 pkgs.mpv
-                pkgs.vlc
+                pkgs.mkalias
+                pkgs.tmux
+                pkgs.docker-compose
             ];
 
             homebrew = {
                 enable = true;
-                taps = {
-                    "homebrew/homebrew-core" = brew-core;
-                    "homebrew/homebrew-cask" = brew-cask;
-                    "charmbracelet/tap" = brew-charm;
-                    "ethereum/ethereum" = brew-ethereum;
-                };
+                # taps = {
+                #     "homebrew/homebrew-core" = brew-core;
+                #     "homebrew/homebrew-cask" = brew-cask;
+                #     "charmbracelet/tap" = brew-charm;
+                #     "ethereum/ethereum" = brew-ethereum;
+                # };
                 brews = [
                     "charmbracelet/tap/charm"
                     "charmbracelet/tap/freeze"
                     "charmbracelet/tap/skate"
-                ];
-                casks = [
-                    "affinity-designer"
-                    "affinity-photo"
-                    "affinity-publisher"
-                    "alfred"
-                    "arc"
-                    "balenaetcher"
-                    "rightfont"
-                    "sf-symbols"
-                    "skype"
-                    "font-ubuntu-mono-nerd-font"
-                    "trash"
                     "grep"
+                    "trash"
                 ];
+                # casks = [
+                #     "affinity-designer"
+                #     "affinity-photo"
+                #     "affinity-publisher"
+                #     "alfred"
+                #     "arc"
+                #     "balenaetcher"
+                #     "firefox"
+                #     "sublime-text"
+                #     "sublime-merge"
+                #     "ledger-live"
+                #     "dropbox"
+                #     "rightfont"
+                #     "sf-symbols"
+                #     "skype"
+                #     "font-ubuntu-mono-nerd-font"
+                #     "vlc"
+                # ];
+                onActivation.autoUpdate = true;
+                onActivation.upgrade = true;
             };
+
+            system.activationScripts.applications.text = let
+                env = pkgs.buildEnv {
+                    name = "system-applications";
+                    paths = config.environment.systemPackages;
+                    pathsToLink = "/Applications";
+                };
+            in
+                pkgs.lib.mkForce ''
+          # Set up applications.
+          echo "setting up /Applications..." >&2
+          rm -rf /Applications/Nix\ Apps
+          mkdir -p /Applications/Nix\ Apps
+          find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+          while read src; do
+            app_name=$(basename "$src")
+            echo "copying $src" >&2
+                    ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+          done
+                '';
 
             # Auto upgrade nix package and the daemon service.
             services.nix-daemon.enable = true;
@@ -102,6 +127,9 @@
             # Create /etc/zshrc that loads the nix-darwin environment.
             programs.zsh.enable = true;  # default shell on catalina
             # programs.fish.enable = true;
+
+            programs.tmux.enable = true;
+            programs.tumx.enableFzf = true;
 
             # Set Git commit hash for darwin-version.
             system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -133,7 +161,7 @@
                             enableRosetta = true;
                             user = "mentegee";
                             autoMigrate = true;
-                            mutableTaps = false;
+                            # mutableTaps = false;
                         };
                     }
                 ];
