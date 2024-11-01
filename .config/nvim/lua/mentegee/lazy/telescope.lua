@@ -17,9 +17,9 @@ return {
 
         local builtin = require('telescope.builtin')
 
-        nfmap('<leader>gs', function()
+        vim.keymap.set('n', '<leader>gs', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ")})
-        end)
+        end, { desc = '[F]ind [H]elp' })
 
 
         -- See `:help telescope.builtin`
