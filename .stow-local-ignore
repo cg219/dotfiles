@@ -2,6 +2,7 @@
 .gitignore
 .stow-local-ignore
 README.md
-terminal/
-iterm/
-install/
+terminal
+iterm
+install
+data
