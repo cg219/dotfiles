@@ -184,7 +184,6 @@
 
                 home.stateVersion = "24.05";
 
-                home.file.".zshrc2".source = ./../.zshrc;
                 home.file.".zshenv".source = ./../.zshenv;
                 home.file.".tmux.conf".source = ./../.tmux.conf;
                 home.file.".config/freeze" = {
@@ -195,6 +194,7 @@
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/kitty;
                     recursive =  true;
                 };
+                home.file.".zshrc".source = ./../.zshrc;
                 home.file.".config/nix" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/nix;
                     recursive =  true;
