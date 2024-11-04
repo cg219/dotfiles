@@ -27,6 +27,7 @@ alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && 
 
 alias f="findproject"
 alias fs="fuzzysession"
+alias switch="darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS"
 # alias ssh="/opt/homebrew/bin/ssh"
 # alias ssh-agent="/opt/homebrew/bin/ssh-agent"
 # alias ssh-keygen="/opt/homebrew/bin/ssh-keygen"
