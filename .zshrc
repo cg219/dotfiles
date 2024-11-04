@@ -111,8 +111,8 @@ do
     if [ -f "$file" ]; then source $file; fi
 done
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(fnm env)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(fnm env)"
 # . "$HOME/.cargo/env"
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -121,4 +121,4 @@ if [ -f $SDKS/google-cloud-sdk/path.zsh.inc ]; then . $SDKS/google-cloud-sdk/pat
 # The next line enables shell command completion for gcloud.
 if [ -f $SDKS/google-cloud-sdk/completion.zsh.inc ]; then . $SDKS/google-cloud-sdk/completion.zsh.inc; fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
