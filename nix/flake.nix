@@ -141,6 +141,7 @@
                     pkgs.charm
                     pkgs.gnugrep
                     pkgs.nodejs_22
+                    pkgs.ffmpeg
                     # pkgs.trashy
                 ];
                 programs.home-manager.enable = true;
