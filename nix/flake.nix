@@ -123,7 +123,6 @@
                     pkgs.lazygit
                     pkgs.libfido2
                     pkgs.turso-cli
-                    pkgs.kitty
                     pkgs.android-tools
                     pkgs.bruno
                     pkgs.cron
@@ -180,29 +179,130 @@
                         f = "findproject";
                         fs = "fuzzysession";
                     };
+
+                    oh-my-zsh = {
+                        enable = true;
+                        theme = "gnzh";
+                        plugins = [ "git" ];
+                    };
+
+                    sessionVariables = {
+                        GOPATH = "$HOME/go";
+                        DENO_INSTALL = "$HOME/.deno";
+                        SDKS = "$HOME/sdks";
+                        USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
+                        CHARM_HOST = "localhost";
+                        FZF_DEFAULT_OPTS = "--tmux";
+                    };
+
+                    envExtra = ''
+                        PATH="$PATH:$GOPATH/bin"
+                        PATH="$PATH:$SDKS"
+                        PATH="$PATH:$DENO_INSTALL/bin"
+                        export PATH
+                    '';
+
+                    initExtra = ''
+                        function hidefiles(){
+                            defaults write com.apple.finder AppleShowAllFiles NO;
+                            killall Finder /System/Library/CoreServices/Finder.app
+                        }
+
+                        function showfiles(){
+                            defaults write com.apple.finder AppleShowAllFiles YES;
+                            killall Finder /System/Library/CoreServices/Finder.app
+                        }
+
+                        function findproject() {
+                            session=$(find ~/development/ActiveTheory ~/development ~/websites ~/apps ~ -type d -mindepth 1 -maxdepth 1 | fzf)
+                            name=$(basename "$session" | tr . _)
+
+                            if ! tmux has-session -t "$name" >> /dev/null ; then
+                                tmux new-session -s "$name" -c "$session" -d
+                            fi
+
+                            tmux switch-client -t "$name"
+                        }
+
+                        function fuzzysession() {
+                            session=$(tmux ls | fzf | sed 's/:.*//')
+
+                            if [[ -n $session ]]; then
+                                tmux switch-client -t "$session"
+                            fi
+                        }
+                    '';
+                };
+
+                programs.tmux = {
+                    enable = true;
+                    escapeTime = 0;
+                    baseIndex = 1;
+                    terminal = "screen-256color";
+                    prefix = "C-a";
+                    mouse = true;
+                    keyMode = "vi";
+                    plugins = [
+                        {
+                            plugin = pkgs.tmuxPlugins.sensible;
+                        }
+                        {
+                            plugin = pkgs.tmuxPlugins.resurrect;
+                        }
+                        {
+                            plugin = pkgs.tmuxPlugins.continuum;
+                            extraConfig = "set -g @continuum-restore 'on'";
+                        }
+                    ];
+                    extraConfig = ''
+                        set -ga terminal-overrides ",screen-256color*:Tc"
+                        set -g status-style "bg=#166275, fg=#ef0038"
+
+                        bind r source-file ~/.tmux.conf
+                        bind t neww
+                        bind q killw
+                        bind n next
+                        bind w run-shell "zsh -ic fs"
+                    '';
+                };
+
+                programs.kitty = {
+                    enable = true;
+                    settings = {
+                        bold_font = "auto";
+                        italic_font = "auto";
+                        bold_italic_font = "auto";
+                        remember_window_size = "yes";
+                        background_opacity = 0.8;
+                    };
+                    font = {
+                        name = "UbuntuMono Nerd Font Mono";
+                        size = 16;
+                    };
+                    themeFile = "Dracula";
                 };
 
                 home.stateVersion = "24.05";
 
-                # home.file.".zshenv".source = ./../.zshenv;
-                # home.file.".zshrc".source = ./../.zshrc;
-                # home.file.".tmux.conf".source = ./../.tmux.conf;
                 home.file.".config/freeze" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/freeze;
                     recursive =  true;
                 };
-                home.file.".config/kitty" = {
-                    source = config.lib.file.mkOutOfStoreSymlink ./../.config/kitty;
-                    recursive =  true;
-                };
-                home.file.".config/nix" = {
-                    source = config.lib.file.mkOutOfStoreSymlink ./../.config/nix;
-                    recursive =  true;
-                };
+                # home.file.".config/kitty" = {
+                #     source = config.lib.file.mkOutOfStoreSymlink ./../.config/kitty;
+                #     recursive =  true;
+                # };
+                # home.file.".config/nix" = {
+                #     source = config.lib.file.mkOutOfStoreSymlink ./../.config/nix;
+                #     recursive =  true;
+                # };
                 home.file.".config/nvim" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/nvim;
                     recursive =  true;
                 };
+                # home.file.".zshenv".source = ./../.zshenv;
+                # home.file.".zshrc".source = ./../.zshrc;
+                # home.file.".tmux.conf".source = ./../.tmux.conf;
             };
         in
             {
