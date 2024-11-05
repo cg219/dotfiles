@@ -140,6 +140,7 @@
                     pkgs.skate
                     pkgs.charm
                     pkgs.gnugrep
+                    pkgs.nodejs_22
                     # pkgs.trashy
                 ];
                 programs.home-manager.enable = true;
@@ -189,6 +190,7 @@
                     sessionVariables = {
                         GOPATH = "$HOME/go";
                         DENO_INSTALL = "$HOME/.deno";
+                        NPM_INSTALL = "$HOME/.npm_global";
                         SDKS = "$HOME/sdks";
                         USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
                         CHARM_HOST = "localhost";
@@ -199,6 +201,7 @@
                         PATH="$PATH:$GOPATH/bin"
                         PATH="$PATH:$SDKS"
                         PATH="$PATH:$DENO_INSTALL/bin"
+                        PATH="$PATH:$NPM_INSTALL/bin"
                         export PATH
                     '';
 
