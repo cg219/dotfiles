@@ -155,6 +155,7 @@
                     pkgs.ffmpeg
                     pkgs.deno
                     pkgs.darwin.trash
+                    pkgs.direnv
                 ];
                 programs.home-manager.enable = true;
                 programs.git = {
@@ -208,7 +209,7 @@
                     oh-my-zsh = {
                         enable = true;
                         theme = "gnzh";
-                        plugins = [ "git" ];
+                        plugins = [ "git" "direnv" ];
                     };
 
                     sessionVariables = {
