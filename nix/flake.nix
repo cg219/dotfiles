@@ -24,8 +24,6 @@
     outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-turso, brew-core, brew-cask, brew-charm, brew-ethereum, home-manager }:
         let configuration = { pkgs, config, ... }: {
             nixpkgs.config.allowUnfree = true;
-            # List packages installed in system profile. To search by name, run:
-            # $ nix-env -qaP | grep wget
             environment.systemPackages = [];
 
             homebrew = {
@@ -69,14 +67,27 @@
             # programs.tmux.enable = true;
             # programs.tumx.enableFzf = true;
 
-            # Set Git commit hash for darwin-version.
             system.configurationRevision = self.rev or self.dirtyRev or null;
 
-            # Used for backwards compatibility, please read the changelog before changing.
-            # $ darwin-rebuild changelog
             system.stateVersion = 4;
+            system.defaults.dock.autohide = true;
+            system.defaults.dock.magnification = true;
+            system.defaults.dock.mineffect = "scale";
+            system.defaults.dock.orientation = "left";
+            system.defaults.dock.tilesize = 31;
+            system.defaults.dock.largesize = 96;
+            system.defaults.dock.expose-group-by-app = false;
+            system.defaults.dock.dashboard-in-overlay = true;
+            system.defaults.NSGlobalDomain."com.apple.trackpad.forceClick" = true;
+            system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = true;
+            system.defaults.NSGlobalDomain."com.apple.keyboard.fnState" = true;
+            system.defaults.".GlobalPreferences"."com.apple.mouse.scaling" = 2.5;
+            system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
+            system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
+            system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
+            system.defaults.finder.ShowPathbar = true;
+            system.defaults.finder.ShowStatusBar = true;
 
-            # The platform the configuration will be used on.
             nixpkgs.hostPlatform = "aarch64-darwin";
             # nix.configureBuilders = true;
             # nix.useDaemon = true;
@@ -145,6 +156,17 @@
                     # pkgs.trashy
                 ];
                 programs.home-manager.enable = true;
+                programs.git = {
+                    enable = true;
+                    userName = "Mente Gee";
+                    userEmail = "dev@imkreative.com";
+                    ignores = [ ".DS_STORE" ];
+                    extraConfig = {
+                        init.defaultBranch = "main";
+                        push.autoSetupRemote = true;
+                    };
+                };
+
                 programs.fzf = {
                     enable = true;
                     tmux = {
