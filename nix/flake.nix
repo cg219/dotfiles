@@ -153,7 +153,8 @@
                     pkgs.gnugrep
                     pkgs.nodejs_22
                     pkgs.ffmpeg
-                    # pkgs.trashy
+                    pkgs.deno
+                    pkgs.darwin.trash
                 ];
                 programs.home-manager.enable = true;
                 programs.git = {
@@ -213,6 +214,7 @@
                     sessionVariables = {
                         GOPATH = "$HOME/go";
                         DENO_INSTALL = "$HOME/.deno";
+                        CUSTOM_INSTALL = "$HOME/.bin";
                         NPM_INSTALL = "$HOME/.npm_global";
                         SDKS = "$HOME/sdks";
                         USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
@@ -225,6 +227,7 @@
                         PATH="$PATH:$SDKS"
                         PATH="$PATH:$DENO_INSTALL/bin"
                         PATH="$PATH:$NPM_INSTALL/bin"
+                        PATH="$PATH:$CUSTOM_INSTALL"
                         export PATH
                     '';
 
