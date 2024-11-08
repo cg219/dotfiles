@@ -39,6 +39,15 @@ return {
                     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = 'LSP: ' .. desc })
                 end
 
+                map("<leader>lk", function ()
+                    local id = vim.fn.input("Process ID: ")
+                    vim.cmd("LspStop " .. id)
+                end, "[L]sp Stop")
+
+                map("<leader>lb", function ()
+                    local id = vim.fn.input("Config Name: ")
+                    vim.cmd("LspStart " .. id)
+                end, "[L]sp Start")
                 -- Jump to the definition of the word under your cursor.
                 --  This is where a variable was first declared, or where a function is defined, etc.
                 --  To jump back, press <C-T>.
@@ -106,36 +115,36 @@ return {
 
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "swift_mesonls", "emmet_language_server"},
+                ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "swift_mesonls" },
                 handlers = {
                     lsp_zero.default_setup,
-                    emmet_langauge_server = function()
-                        lspconfig.emmet_language_server.setup({
-                            filetypes = { "css", "html" },
-                            -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
-                            -- **Note:** only the options listed in the table are supported.
-                            init_options = {
-                                ---@type table<string, string>
-                                includeLanguages = {},
-                                --- @type string[]
-                                excludeLanguages = {},
-                                --- @type string[]
-                                extensionsPath = {},
-                                --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
-                                preferences = {},
-                                --- @type boolean Defaults to `true`
-                                showAbbreviationSuggestions = true,
-                                --- @type "always" | "never" Defaults to `"always"`
-                                showExpandedAbbreviation = "always",
-                                --- @type boolean Defaults to `false`
-                                showSuggestionsAsSnippets = false,
-                                --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
-                                syntaxProfiles = {},
-                                --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
-                                variables = {},
-                            }
-                        })
-                    end,
+                    -- emmet_langauge_server = function()
+                    --     lspconfig.emmet_language_server.setup({
+                    --         filetypes = { "css", "html" },
+                    --         -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
+                    --         -- **Note:** only the options listed in the table are supported.
+                    --         init_options = {
+                    --             ---@type table<string, string>
+                    --             includeLanguages = {},
+                    --             --- @type string[]
+                    --             excludeLanguages = {},
+                    --             --- @type string[]
+                    --             extensionsPath = {},
+                    --             --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+                    --             preferences = {},
+                    --             --- @type boolean Defaults to `true`
+                    --             showAbbreviationSuggestions = true,
+                    --             --- @type "always" | "never" Defaults to `"always"`
+                    --             showExpandedAbbreviation = "always",
+                    --             --- @type boolean Defaults to `false`
+                    --             showSuggestionsAsSnippets = false,
+                    --             --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+                    --             syntaxProfiles = {},
+                    --             --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+                    --             variables = {},
+                    --         }
+                    --     })
+                    -- end,
                     gopls = function()
                         lspconfig.gopls.setup({
                             root_dir = lspconfig.util.root_pattern("go.mod", "go.sum"),
@@ -162,6 +171,7 @@ return {
                     denols = function()
                         lspconfig.denols.setup({
                             root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+                            filetypes = { "typescript" },
                             init_options = {
                                 lint = true,
                                 unstable = true,
@@ -173,6 +183,7 @@ return {
                                         imports = {
                                             autoDiscover = true,
                                             hosts = {
+                                                ["https://jsr.io/"] = true,
                                                 ["https://deno.land/"] = true
                                             }
                                         }
