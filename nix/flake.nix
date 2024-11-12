@@ -8,52 +8,52 @@
         home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-        nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-        brew-core.url = "github:homebrew/homebrew-core";
-        brew-core.flake = false;
-        brew-cask.url = "github:homebrew/homebrew-cask";
-        brew-cask.flake = false;
-        brew-charm.url = "github:charmbracelet/homebrew-tap";
-        brew-charm.flake = false;
-        brew-ethereum.url = "github:ethereum/homebrew-ethereum";
-        brew-ethereum.flake = false;
-        brew-turso.url = "github:tursodatabase/homebrew-tap";
-        brew-turso.flake = false;
+        # nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+        # brew-core.url = "github:homebrew/homebrew-core";
+        # brew-core.flake = false;
+        # brew-cask.url = "github:homebrew/homebrew-cask";
+        # brew-cask.flake = false;
+        # brew-charm.url = "github:charmbracelet/homebrew-tap";
+        # brew-charm.flake = false;
+        # brew-ethereum.url = "github:ethereum/homebrew-ethereum";
+        # brew-ethereum.flake = false;
+        # brew-turso.url = "github:tursodatabase/homebrew-tap";
+        # brew-turso.flake = false;
     };
 
-    outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-turso, brew-core, brew-cask, brew-charm, brew-ethereum, home-manager }:
+    outputs = inputs@{ self, darwin, nixpkgs, /*nix-homebrew, brew-turso, brew-core, brew-cask, brew-charm, brew-ethereum,  */home-manager }:
         let configuration = { pkgs, config, ... }: {
             nixpkgs.config.allowUnfree = true;
             environment.systemPackages = [];
 
-            homebrew = {
-                enable = false;
-                brews = [
-                    "tursodatabase/tap/turso"
-                ];
-                casks = [
-                    "affinity-designer"
-                    "affinity-photo"
-                    "affinity-publisher"
-                    "alfred"
-                    "arc"
-                    "balenaetcher"
-                    "firefox"
-                    "sublime-text"
-                    "sublime-merge"
-                    "ledger-live"
-                    "dropbox"
-                    "rightfont"
-                    "sf-symbols"
-                    "skype"
-                    "font-ubuntu-mono-nerd-font"
-                    "vlc"
-                    "utm"
-                ];
-                onActivation.autoUpdate = true;
-                onActivation.upgrade = true;
-                onActivation.cleanup = "uninstall";
-            };
+            # homebrew = {
+            #     enable = fals
+            #     brews = [
+            #         "tursodatabase/tap/turso"
+            #     ];
+            #     casks = [
+            #         "affinity-designer"
+            #         "affinity-photo"
+            #         "affinity-publisher"
+            #         "alfred"
+            #         "arc"
+            #         "balenaetcher"
+            #         "firefox"
+            #         "sublime-text"
+            #         "sublime-merge"
+            #         "ledger-live"
+            #         "dropbox"
+            #         "rightfont"
+            #         "sf-symbols"
+            #         "skype"
+            #         "font-ubuntu-mono-nerd-font"
+            #         "vlc"
+            #         "utm"
+            #     ];
+            #     onActivation.autoUpdate = true;
+            #     onActivation.upgrade = true;
+            #     onActivation.cleanup = "uninstall";
+            # };
 
             # Auto upgrade nix package and the daemon service.
             services.nix-daemon.enable = true;
@@ -111,7 +111,7 @@
           rm -rf /Applications/Nix\ Apps
           mkdir -p /Applications/Nix\ Apps
           find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-          while read src; do
+          while read -r src; do
             app_name=$(basename "$src")
             echo "copying $src" >&2
                     ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
@@ -224,6 +224,7 @@
                     };
 
                     envExtra = ''
+                        PATH="$PATH:/opt/homebrew/bin"
                         PATH="$PATH:$GOPATH/bin"
                         PATH="$PATH:$SDKS"
                         PATH="$PATH:$DENO_INSTALL/bin"
@@ -341,22 +342,22 @@
             darwinConfigurations."dev-macOS" = darwin.lib.darwinSystem {
                 modules = [
                     configuration
-                    nix-homebrew.darwinModules.nix-homebrew {
-                        nix-homebrew = {
-                            enable = false;
-                            enableRosetta = true;
-                            user = "mentegee";
-                            # autoMigrate = true;
-                            mutableTaps = false;
-
-                            taps = {
-                                "homebrew/homebrew-core" = brew-core;
-                                "homebrew/homebrew-cask" = brew-cask;
-                                "charmbracelet/tap" = brew-charm;
-                                "ethereum/ethereum" = brew-ethereum;
-                            };
-                        };
-                    }
+                    # nix-homebrew.darwinModules.nix-homebrew {
+                    #     nix-homebrew = {
+                    #         enable = false;
+                    #         enableRosetta = true;
+                    #         user = "mentegee";
+                    #         # autoMigrate = true;
+                    #         mutableTaps = false;
+                    #
+                    #         taps = {
+                    #             "homebrew/homebrew-core" = brew-core;
+                    #             "homebrew/homebrew-cask" = brew-cask;
+                    #             "charmbracelet/tap" = brew-charm;
+                    #             "ethereum/ethereum" = brew-ethereum;
+                    #         };
+                    #     };
+                    # }
                     home-manager.darwinModules.home-manager {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
