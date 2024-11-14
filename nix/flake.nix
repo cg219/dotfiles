@@ -27,29 +27,89 @@
             environment.systemPackages = [];
 
             homebrew = {
-                enable = false;
+                enable = true;
                 brews = [
                     "tursodatabase/tap/turso"
                 ];
                 casks = [
-                    "affinity-designer"
-                    "affinity-photo"
-                    "affinity-publisher"
-                    "alfred"
-                    "arc"
-                    "balenaetcher"
-                    "firefox"
-                    "sublime-text"
-                    "sublime-merge"
-                    "ledger-live"
-                    "dropbox"
-                    "rightfont"
-                    "sf-symbols"
-                    "skype"
-                    "font-ubuntu-mono-nerd-font"
-                    "vlc"
-                    "utm"
+                    {
+                        name = "affinity-designer";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "affinity-photo";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "affinity-publisher";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "alfred";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "arc";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "calibre";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "hoppscotch";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "notion-calendar";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "balenaetcher";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "firefox";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "sublime-text";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "sublime-merge";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "ledger-live";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "dropbox";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "rightfont";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "sf-symbols";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "font-ubuntu-mono-nerd-font";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
+                    {
+                        name = "vlc";
+                        args = { appdir = "/Users/mentegee/Applications"; };
+                    }
                 ];
+                masApps = {
+                    "Magnet" = 441258766;
+                    "Bitwarden" = 1352778147;
+                    "Enchanted" = -2115666285;
+                };
                 onActivation.autoUpdate = true;
                 onActivation.upgrade = true;
                 onActivation.cleanup = "uninstall";
@@ -125,10 +185,10 @@
                     pkgs.neovim
                     pkgs.git-extras
                     pkgs.gitflow
+                    pkgs.strawberry
                     pkgs.tree
                     pkgs.wget
                     pkgs.mas
-                    pkgs.fnm
                     pkgs.go
                     pkgs.lua
                     pkgs.lazygit
@@ -156,6 +216,8 @@
                     pkgs.deno
                     pkgs.darwin.trash
                     pkgs.direnv
+                    pkgs.tailscale
+                    pkgs.ollama
                 ];
                 programs.home-manager.enable = true;
                 programs.git = {
