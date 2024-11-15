@@ -13,15 +13,9 @@
         brew-core.flake = false;
         brew-cask.url = "github:homebrew/homebrew-cask";
         brew-cask.flake = false;
-        brew-charm.url = "github:charmbracelet/homebrew-tap";
-        brew-charm.flake = false;
-        brew-ethereum.url = "github:ethereum/homebrew-ethereum";
-        brew-ethereum.flake = false;
-        brew-turso.url = "github:tursodatabase/homebrew-tap";
-        brew-turso.flake = false;
     };
 
-    outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-turso, brew-core, brew-cask, brew-charm, brew-ethereum, home-manager }:
+    outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-core, brew-cask, home-manager }:
         let configuration = { pkgs, config, ... }: {
             nixpkgs.config.allowUnfree = true;
             environment.systemPackages = [
@@ -48,14 +42,14 @@
                 pkgs.spotify
                 pkgs.mpv
                 pkgs.mkalias
-                pkgs.tmux
+                pkgs.zellij
                 pkgs.docker-compose
                 pkgs.charm-freeze
                 pkgs.skate
                 pkgs.cargo
                 pkgs.charm
                 pkgs.gnugrep
-                pkgs.nodejs_22
+                pkgs.nodejs
                 pkgs.ffmpeg
                 pkgs.darwin.trash
                 pkgs.direnv
@@ -67,9 +61,6 @@
 
             homebrew = {
                 enable = true;
-                brews = [
-                    # "tursodatabase/tap/turso"
-                ];
                 casks = [
                     {
                         name = "affinity-designer";
@@ -226,14 +217,23 @@
                     }
 
                     function findproject() {
-                         session=$(find ~/development/ActiveTheory ~/development ~/websites ~/apps ~ -type d -mindepth 1 -maxdepth 1 | fzf)
+                        session=$(find ~/development/ActiveTheory ~/development ~/websites ~/apps ~ -type d -mindepth 1 -maxdepth 1 | fzf)
                         name=$(basename "$session" | tr . _)
 
                         if ! tmux has-session -t "$name" >> /dev/null ; then
+                            echo ohno
+                            echo $session
+                            echo $name
                             tmux new-session -s "$name" -c "$session" -d
                         fi
 
-                        tmux switch-client -t "$name"
+                        if [[ -n $TMUX ]]; then
+                            echo yo
+                            tmux switch-client -t "$name"
+                        else
+                            echo nah
+                            tmux attach-session -t "$name"
+                        fi
                     }
 
                     function fuzzysession() {
@@ -252,7 +252,7 @@
             };
 
             programs.tmux = {
-                enable = true;
+                enable = false;
                 enableMouse = true;
                 enableFzf = true;
                 enableSensible = true;
@@ -266,6 +266,7 @@
                     set -g status-keys vi
                     set -g status-style "bg=#166275, fg=#ef0038"
                     set -g mouse on
+                    set-option -g set-titles off
 
                     set -g prefix C-a
                     unbind C-b
@@ -275,7 +276,7 @@
                     bind t neww
                     bind q killw
                     bind n next
-                    bind w run -b "~/.scripts/fuzzysession.sh"
+                    bind w run-shell "~/.scripts/fuzzysession.sh && true"
 
                     set -g @plugin 'tmux-plugins/tpm'
                     set -g @plugin 'tmux-plugins/tmux-sensible'
@@ -362,94 +363,6 @@
                     enableZshIntegration = true;
                 };
 
-                programs.zsh = {
-                    enable = false;
-                    shellAliases = {
-                        switch = "darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS";
-                        mente = "cd ~";
-                        desk = "cd ~/Desktop";
-                        web = "cd ~/websites";
-                        dev = "cd ~/development";
-                        apps = "cd ~/apps";
-                        vim = "nvim";
-                        n = "nvim .";
-                        gateo = "sudo spctl --master-disable";
-                        gatec = "sudo spctl --master-enable";
-                        getssh = "cat ~/.ssh/id_rsa.pub | pbcopy";
-                        ".." = "cd ../";
-                        "..." = "cd ../../";
-                        gin = "git init";
-                        gad = "git add";
-                        gomit = "git commit -m";
-                        gush = "git push";
-                        gull = "git pull";
-                        gsus = "git status";
-                        today = "git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all";
-                        yesterday = "git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all";
-                        obsidian = "$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n";
-                        f = "findproject";
-                        fs = "fuzzysession";
-                    };
-
-                    oh-my-zsh = {
-                        enable = true;
-                        theme = "gnzh";
-                        plugins = [ "git" "direnv" ];
-                    };
-
-                    sessionVariables = {
-                        GOPATH = "$HOME/go";
-                        DENO_INSTALL = "$HOME/.deno";
-                        CUSTOM_INSTALL = "$HOME/.bin";
-                        NPM_INSTALL = "$HOME/.npm_global";
-                        SDKS = "$HOME/sdks";
-                        USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
-                        CHARM_HOST = "localhost";
-                        FZF_DEFAULT_OPTS = "--tmux";
-                    };
-
-                    envExtra = ''
-                        PATH="$PATH:/opt/homebrew/bin"
-                        PATH="$PATH:$GOPATH/bin"
-                        PATH="$PATH:$SDKS"
-                        PATH="$PATH:$DENO_INSTALL/bin"
-                        PATH="$PATH:$NPM_INSTALL/bin"
-                        PATH="$PATH:$CUSTOM_INSTALL"
-                        export PATH
-                    '';
-
-                    initExtra = ''
-                        function hidefiles(){
-                            defaults write com.apple.finder AppleShowAllFiles NO;
-                            killall Finder /System/Library/CoreServices/Finder.app
-                        }
-
-                        function showfiles(){
-                            defaults write com.apple.finder AppleShowAllFiles YES;
-                            killall Finder /System/Library/CoreServices/Finder.app
-                        }
-
-                        function findproject() {
-                            session=$(find ~/development/ActiveTheory ~/development ~/websites ~/apps ~ -type d -mindepth 1 -maxdepth 1 | fzf)
-                            name=$(basename "$session" | tr . _)
-
-                            if ! tmux has-session -t "$name" >> /dev/null ; then
-                                tmux new-session -s "$name" -c "$session" -d
-                            fi
-
-                            tmux switch-client -t "$name"
-                        }
-
-                        function fuzzysession() {
-                            session=$(tmux ls | fzf | sed 's/:.*//')
-
-                            if [[ -n $session ]]; then
-                                tmux switch-client -t "$session"
-                            fi
-                        }
-                    '';
-                };
-
                 home.stateVersion = "24.05";
 
                 home.file.".config/freeze" = {
@@ -468,13 +381,13 @@
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/nvim;
                     recursive =  true;
                 };
-                home.file.".scripts/" = {
+                home.file.".scripts" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../scripts;
-                    recursive = true;
+                    recursive = false;
                 };
                 # home.file.".zshenv".source = ./../.zshenv;
                 # home.file.".zshrc".source = ./../.zshrc;
-                # home.file.".tmux.conf".source = ./../.tmux.conf;
+                # home.file.".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink ./../.tmux.conf;
             };
         in
             {
@@ -494,8 +407,6 @@
                             taps = {
                                 "homebrew/homebrew-core" = brew-core;
                                 "homebrew/homebrew-cask" = brew-cask;
-                                "charmbracelet/homebrew-tap" = brew-charm;
-                                "ethereum/homebrew-ethereum" = brew-ethereum;
                             };
                         };
                     }
