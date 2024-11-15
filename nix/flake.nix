@@ -242,7 +242,7 @@
                     alias today="git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all"
                     alias yesterday="git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all"
                     alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n"
-                    alias f="findproject"
+                    alias f="deno run -A ~/.scripts/launchproject.ts"
                     alias fs="fuzzysession"
 
                     export ZSH
