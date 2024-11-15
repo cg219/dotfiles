@@ -163,30 +163,6 @@
             };
 
             environment.shellAliases = {
-                switch = "darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS";
-                mente = "cd ~";
-                desk = "cd ~/Desktop";
-                web = "cd ~/websites";
-                dev = "cd ~/development";
-                apps = "cd ~/apps";
-                vim = "nvim";
-                n = "nvim .";
-                gateo = "sudo spctl --master-disable";
-                gatec = "sudo spctl --master-enable";
-                getssh = "cat ~/.ssh/id_rsa.pub | pbcopy";
-                ".." = "cd ../";
-                "..." = "cd ../../";
-                gin = "git init";
-                gad = "git add";
-                gomit = "git commit -m";
-                gush = "git push";
-                gull = "git pull";
-                gsus = "git status";
-                today = "git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all";
-                yesterday = "git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all";
-                obsidian = "$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n";
-                f = "findproject";
-                fs = "fuzzysession";
             };
 
             programs.zsh = {
@@ -243,6 +219,31 @@
                             tmux switch-client -t "$session"
                         fi
                     }
+
+                    alias switch="darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS"
+                    alias mente="cd ~"
+                    alias desk="cd ~/Desktop"
+                    alias web="cd ~/websites"
+                    alias dev="cd ~/development"
+                    alias apps="cd ~/apps"
+                    alias vim="nvim"
+                    alias n="nvim ."
+                    alias gateo="sudo spctl --master-disable"
+                    alias gatec="sudo spctl --master-enable"
+                    alias getssh="cat ~/.ssh/id_rsa.pub | pbcopy"
+                    alias ".."="cd ../"
+                    alias "..."="cd ../../"
+                    alias gin="git init"
+                    alias gad="git add"
+                    alias gomit="git commit -m"
+                    alias gush="git push"
+                    alias gull="git pull"
+                    alias gsus="git status"
+                    alias today="git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all"
+                    alias yesterday="git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all"
+                    alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n"
+                    alias f="findproject"
+                    alias fs="fuzzysession"
 
                     export ZSH
                     ZSH_THEME="gnzh"
@@ -373,10 +374,10 @@
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/kitty;
                     recursive =  true;
                 };
-                # home.file.".config/nix" = {
-                #     source = config.lib.file.mkOutOfStoreSymlink ./../.config/nix;
-                #     recursive =  true;
-                # };
+                home.file.".config/zellij" = {
+                    source = config.lib.file.mkOutOfStoreSymlink ./../.config/zellij;
+                    recursive =  true;
+                };
                 home.file.".config/nvim" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/nvim;
                     recursive =  true;

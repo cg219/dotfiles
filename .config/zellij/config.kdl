@@ -1,14 +1,26 @@
+theme "dracula"
+default_mode "locked"
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
-keybinds {
+keybinds clear-defaults=true {
     normal {
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
+        bind "p" { NewPane; SwitchToMode "Locked"; }
+        bind "x" { CloseFocus; SwitchToMode "Locked"; }
+        bind "t" { NewTab; SwitchToMode "Locked"; }
+        bind "q" { CloseTab; SwitchToMode "Locked"; }
+        bind "l" "Right" { GoToNextTab; }
+        bind "h" "Left" { GoToPreviousTab; }
+        bind "J" { MoveFocus "Down"; }
+        bind "K" { MoveFocus "Up"; }
+        bind "H" { MoveFocus "Left"; }
+        bind "L" { MoveFocus "Right"; }
+        bind "Enter" { SwitchToMode "Locked"; }
+        bind "r" { SwitchToMode "Resize"; }
     }
     locked {
-        bind "Ctrl a" { SwitchToMode "Normal"; }
+        bind "Ctrl g" { SwitchToMode "Normal"; }
     }
     resize {
-        bind "Ctrl n" { SwitchToMode "Normal"; }
+        bind "Enter" { SwitchToMode "Locked"; }
         bind "h" "Left" { Resize "Increase Left"; }
         bind "j" "Down" { Resize "Increase Down"; }
         bind "k" "Up" { Resize "Increase Up"; }
@@ -21,7 +33,7 @@ keybinds {
         bind "-" { Resize "Decrease"; }
     }
     pane {
-        bind "Ctrl p" { SwitchToMode "Normal"; }
+        // bind "Ctrl p" { SwitchToMode "Normal"; }
         bind "h" "Left" { MoveFocus "Left"; }
         bind "l" "Right" { MoveFocus "Right"; }
         bind "j" "Down" { MoveFocus "Down"; }
@@ -197,6 +209,22 @@ keybinds {
     }
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
+    }
+}
+
+themes {
+    dracula {
+        fg 248 248 242
+        bg 40 42 54
+        red 255 85 85
+        green 80 250 123
+        yellow 241 250 140
+        blue 98 114 164
+        magenta 255 121 198
+        orange 255 184 108
+        cyan 139 233 253
+        black 0 0 0
+        white 255 255 255
     }
 }
 
