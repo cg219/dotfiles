@@ -24,12 +24,51 @@
     outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-turso, brew-core, brew-cask, brew-charm, brew-ethereum, home-manager }:
         let configuration = { pkgs, config, ... }: {
             nixpkgs.config.allowUnfree = true;
-            environment.systemPackages = [];
+            environment.systemPackages = [
+                pkgs.deno
+                pkgs.neovim
+                pkgs.git-extras
+                pkgs.gitflow
+                pkgs.tree
+                pkgs.wget
+                pkgs.mas
+                pkgs.go
+                pkgs.lua
+                pkgs.lazygit
+                pkgs.libfido2
+                pkgs.turso-cli
+                pkgs.android-tools
+                pkgs.bruno
+                pkgs.cron
+                pkgs.tableplus
+                pkgs.discord
+                pkgs.docker
+                pkgs.obsidian
+                pkgs.slack
+                pkgs.spotify
+                pkgs.mpv
+                pkgs.mkalias
+                pkgs.tmux
+                pkgs.docker-compose
+                pkgs.charm-freeze
+                pkgs.skate
+                pkgs.cargo
+                pkgs.charm
+                pkgs.gnugrep
+                pkgs.nodejs_22
+                pkgs.ffmpeg
+                pkgs.darwin.trash
+                pkgs.direnv
+                pkgs.tailscale
+                pkgs.ollama
+                pkgs.kitty
+                pkgs.oh-my-zsh
+            ];
 
             homebrew = {
                 enable = true;
                 brews = [
-                    "tursodatabase/tap/turso"
+                    # "tursodatabase/tap/turso"
                 ];
                 casks = [
                     {
@@ -108,7 +147,6 @@
                 masApps = {
                     "Magnet" = 441258766;
                     "Bitwarden" = 1352778147;
-                    "Enchanted" = -2115666285;
                 };
                 onActivation.autoUpdate = true;
                 onActivation.upgrade = true;
@@ -122,10 +160,134 @@
             # Necessary for using flakes on this system.
             nix.settings.experimental-features = ["nix-command" "flakes"];
 
-            programs.zsh.enable = true;  # default shell on catalina
+            environment.variables = {
+                GOPATH = "$HOME/go";
+                DENO_INSTALL = "$HOME/.deno";
+                CUSTOM_INSTALL = "$HOME/.bin";
+                NPM_INSTALL = "$HOME/.npm_global";
+                SDKS = "$HOME/sdks";
+                USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
+                CHARM_HOST = "localhost";
+                FZF_DEFAULT_OPTS = "--tmux";
+            };
 
-            # programs.tmux.enable = true;
-            # programs.tumx.enableFzf = true;
+            environment.shellAliases = {
+                switch = "darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS";
+                mente = "cd ~";
+                desk = "cd ~/Desktop";
+                web = "cd ~/websites";
+                dev = "cd ~/development";
+                apps = "cd ~/apps";
+                vim = "nvim";
+                n = "nvim .";
+                gateo = "sudo spctl --master-disable";
+                gatec = "sudo spctl --master-enable";
+                getssh = "cat ~/.ssh/id_rsa.pub | pbcopy";
+                ".." = "cd ../";
+                "..." = "cd ../../";
+                gin = "git init";
+                gad = "git add";
+                gomit = "git commit -m";
+                gush = "git push";
+                gull = "git pull";
+                gsus = "git status";
+                today = "git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all";
+                yesterday = "git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all";
+                obsidian = "$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n";
+                f = "findproject";
+                fs = "fuzzysession";
+            };
+
+            programs.zsh = {
+                enable = true;
+                enableFzfCompletion = true;
+                enableFzfHistory = true;
+                promptInit = '''';
+                shellInit = ''
+                    ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh";
+
+                    PATH="$PATH:/opt/homebrew/bin"
+                    PATH="$PATH:$GOPATH/bin"
+                    PATH="$PATH:$SDKS"
+                    PATH="$PATH:$DENO_INSTALL/bin"
+                    PATH="$PATH:$NPM_INSTALL/bin"
+                    PATH="$PATH:$CUSTOM_INSTALL"
+                    PATH="$PATH:$HOME/.cargo/bin"
+                    export PATH
+
+                    function hidefiles(){
+                        defaults write com.apple.finder AppleShowAllFiles NO;
+                        killall Finder /System/Library/CoreServices/Finder.app
+                    }
+                    
+                    function showfiles(){
+                        defaults write com.apple.finder AppleShowAllFiles YES;
+                        killall Finder /System/Library/CoreServices/Finder.app
+                    }
+
+                    function findproject() {
+                         session=$(find ~/development/ActiveTheory ~/development ~/websites ~/apps ~ -type d -mindepth 1 -maxdepth 1 | fzf)
+                        name=$(basename "$session" | tr . _)
+
+                        if ! tmux has-session -t "$name" >> /dev/null ; then
+                            tmux new-session -s "$name" -c "$session" -d
+                        fi
+
+                        tmux switch-client -t "$name"
+                    }
+
+                    function fuzzysession() {
+                        session=$(tmux ls | fzf | sed 's/:.*//')
+
+                        if [[ -n $session ]]; then
+                            tmux switch-client -t "$session"
+                        fi
+                    }
+
+                    export ZSH
+                    ZSH_THEME="gnzh"
+                    plugins=(git direnv)
+                    source $ZSH/oh-my-zsh.sh
+                '';
+            };
+
+            programs.tmux = {
+                enable = true;
+                enableMouse = true;
+                enableFzf = true;
+                enableSensible = true;
+                extraConfig = ''
+                    set -ga terminal-overrides ",screen-256color*:Tc"
+                    set-option -g default-terminal "screen-256color"
+                    set-option -g default-shell /bin/zsh
+                    set -s escape-time 0
+                    set -g base-index 1
+                    set -g pane-base-index 1
+                    set -g status-keys vi
+                    set -g status-style "bg=#166275, fg=#ef0038"
+                    set -g mouse on
+
+                    set -g prefix C-a
+                    unbind C-b
+                    bind C-a send-prefix
+
+                    bind r source-file ~/.tmux.conf
+                    bind t neww
+                    bind q killw
+                    bind n next
+                    bind w run -b "~/.scripts/fuzzysession.sh"
+
+                    set -g @plugin 'tmux-plugins/tpm'
+                    set -g @plugin 'tmux-plugins/tmux-sensible'
+                    set -g @plugin 'tmux-plugins/tmux-resurrect'
+                    set -g @plugin 'tmux-plugins/tmux-continuum'
+
+                    set -g @continuum-restore 'on'
+                    set -g @tpm-clean 'i'
+
+                    run '~/.tmux/plugins/tpm/tpm'
+                '';
+            };
 
             system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -147,15 +309,13 @@
             system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
             system.defaults.finder.ShowPathbar = true;
             system.defaults.finder.ShowStatusBar = true;
-
             nixpkgs.hostPlatform = "aarch64-darwin";
-            # nix.configureBuilders = true;
-            # nix.useDaemon = true;
             security.pam.enableSudoTouchIdAuth = true;
 
             users.users.mentegee = {
                 name = "mentegee";
                 home = "/Users/mentegee";
+                shell = pkgs.zsh;
             };
 
             system.activationScripts.applications.text = let
@@ -181,44 +341,7 @@
         };
             mentegee = {pkgs, config, ... }: {
                 nixpkgs.config.allowUnfree = true;
-                home.packages = [
-                    pkgs.neovim
-                    pkgs.git-extras
-                    pkgs.gitflow
-                    pkgs.strawberry
-                    pkgs.tree
-                    pkgs.wget
-                    pkgs.mas
-                    pkgs.go
-                    pkgs.lua
-                    pkgs.lazygit
-                    pkgs.libfido2
-                    pkgs.turso-cli
-                    pkgs.android-tools
-                    pkgs.bruno
-                    pkgs.cron
-                    pkgs.tableplus
-                    pkgs.discord
-                    pkgs.docker
-                    pkgs.obsidian
-                    pkgs.slack
-                    pkgs.spotify
-                    pkgs.mpv
-                    pkgs.mkalias
-                    pkgs.tmux
-                    pkgs.docker-compose
-                    pkgs.charm-freeze
-                    pkgs.skate
-                    pkgs.charm
-                    pkgs.gnugrep
-                    pkgs.nodejs_22
-                    pkgs.ffmpeg
-                    pkgs.deno
-                    pkgs.darwin.trash
-                    pkgs.direnv
-                    pkgs.tailscale
-                    pkgs.ollama
-                ];
+                home.packages = [];
                 programs.home-manager.enable = true;
                 programs.git = {
                     enable = true;
@@ -240,7 +363,7 @@
                 };
 
                 programs.zsh = {
-                    enable = true;
+                    enable = false;
                     shellAliases = {
                         switch = "darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS";
                         mente = "cd ~";
@@ -327,64 +450,16 @@
                     '';
                 };
 
-                programs.tmux = {
-                    enable = true;
-                    escapeTime = 0;
-                    baseIndex = 1;
-                    terminal = "screen-256color";
-                    prefix = "C-a";
-                    mouse = true;
-                    keyMode = "vi";
-                    plugins = [
-                        {
-                            plugin = pkgs.tmuxPlugins.sensible;
-                        }
-                        {
-                            plugin = pkgs.tmuxPlugins.resurrect;
-                        }
-                        {
-                            plugin = pkgs.tmuxPlugins.continuum;
-                            extraConfig = "set -g @continuum-restore 'on'";
-                        }
-                    ];
-                    extraConfig = ''
-                        set -ga terminal-overrides ",screen-256color*:Tc"
-                        set -g status-style "bg=#166275, fg=#ef0038"
-
-                        bind r source-file ~/.tmux.conf
-                        bind t neww
-                        bind q killw
-                        bind n next
-                        bind w run-shell "zsh -ic fs"
-                    '';
-                };
-
-                programs.kitty = {
-                    enable = true;
-                    settings = {
-                        bold_font = "auto";
-                        italic_font = "auto";
-                        bold_italic_font = "auto";
-                        remember_window_size = "yes";
-                        background_opacity = 0.8;
-                    };
-                    font = {
-                        name = "UbuntuMono Nerd Font Mono";
-                        size = 16;
-                    };
-                    themeFile = "Dracula";
-                };
-
                 home.stateVersion = "24.05";
 
                 home.file.".config/freeze" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/freeze;
                     recursive =  true;
                 };
-                # home.file.".config/kitty" = {
-                #     source = config.lib.file.mkOutOfStoreSymlink ./../.config/kitty;
-                #     recursive =  true;
-                # };
+                home.file.".config/kitty" = {
+                    source = config.lib.file.mkOutOfStoreSymlink ./../.config/kitty;
+                    recursive =  true;
+                };
                 # home.file.".config/nix" = {
                 #     source = config.lib.file.mkOutOfStoreSymlink ./../.config/nix;
                 #     recursive =  true;
@@ -392,6 +467,10 @@
                 home.file.".config/nvim" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/nvim;
                     recursive =  true;
+                };
+                home.file.".scripts/" = {
+                    source = config.lib.file.mkOutOfStoreSymlink ./../scripts;
+                    recursive = true;
                 };
                 # home.file.".zshenv".source = ./../.zshenv;
                 # home.file.".zshrc".source = ./../.zshrc;
@@ -406,17 +485,17 @@
                     configuration
                     nix-homebrew.darwinModules.nix-homebrew {
                         nix-homebrew = {
-                            enable = false;
+                            enable = true;
                             enableRosetta = false;
                             user = "mentegee";
-                            autoMigrate = false;
-                            mutableTaps = false;
+                            autoMigrate = true;
+                            mutableTaps = true;
 
                             taps = {
                                 "homebrew/homebrew-core" = brew-core;
                                 "homebrew/homebrew-cask" = brew-cask;
-                                "charmbracelet/tap" = brew-charm;
-                                "ethereum/ethereum" = brew-ethereum;
+                                "charmbracelet/homebrew-tap" = brew-charm;
+                                "ethereum/homebrew-ethereum" = brew-ethereum;
                             };
                         };
                     }
