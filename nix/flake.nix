@@ -290,7 +290,7 @@
                     enableZshIntegration = true;
                 };
 
-                home.stateVersion = "24.05";
+                home.stateVersion = "25.05";
 
                 home.file.".config/freeze" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/freeze;
