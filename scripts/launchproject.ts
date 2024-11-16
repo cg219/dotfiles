@@ -26,15 +26,15 @@ const fzf = new Deno.Command("fzf", {
     stdout: "piped"
 })
 
-const p = fzf.spawn()
-const pwriter = p.stdin.getWriter()
+const fzfp = fzf.spawn()
+const pwriter = fzfp.stdin.getWriter()
 
 pwriter.write(new TextEncoder().encode(filesAsList))
 pwriter.releaseLock()
 
-await p.stdin.close()
+await fzfp.stdin.close()
 
-const chosen = new TextDecoder().decode((await p.output()).stdout)
+const chosen = new TextDecoder().decode((await fzfp.output()).stdout)
 
 if (!chosen) Deno.exit();
 
@@ -44,13 +44,14 @@ const chosenEntry = files.find((f) => {
 
 if (!chosenEntry) Deno.exit();
 
-console.log(chosenEntry)
-
 const zellij = new Deno.Command("zellij", {
     args: [
-        "a",
+        "attach",
         "-c",
-        chosenEntry.name
+        chosenEntry.name,
+        "options",
+        "--default-cwd",
+        chosenEntry.path
     ]
 })
 

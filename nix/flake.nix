@@ -192,34 +192,6 @@
                         killall Finder /System/Library/CoreServices/Finder.app
                     }
 
-                    function findproject() {
-                        session=$(find ~/development/ActiveTheory ~/development ~/websites ~/apps ~ -type d -mindepth 1 -maxdepth 1 | fzf)
-                        name=$(basename "$session" | tr . _)
-
-                        if ! tmux has-session -t "$name" >> /dev/null ; then
-                            echo ohno
-                            echo $session
-                            echo $name
-                            tmux new-session -s "$name" -c "$session" -d
-                        fi
-
-                        if [[ -n $TMUX ]]; then
-                            echo yo
-                            tmux switch-client -t "$name"
-                        else
-                            echo nah
-                            tmux attach-session -t "$name"
-                        fi
-                    }
-
-                    function fuzzysession() {
-                        session=$(tmux ls | fzf | sed 's/:.*//')
-
-                        if [[ -n $session ]]; then
-                            tmux switch-client -t "$session"
-                        fi
-                    }
-
                     alias switch="darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS"
                     alias mente="cd ~"
                     alias desk="cd ~/Desktop"
