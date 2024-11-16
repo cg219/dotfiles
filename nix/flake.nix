@@ -162,8 +162,7 @@
                 FZF_DEFAULT_OPTS = "--tmux";
             };
 
-            environment.shellAliases = {
-            };
+            # environment.shellAliases = {};
 
             programs.zsh = {
                 enable = true;
@@ -205,61 +204,16 @@
                     alias getssh="cat ~/.ssh/id_rsa.pub | pbcopy"
                     alias ".."="cd ../"
                     alias "..."="cd ../../"
-                    alias gin="git init"
-                    alias gad="git add"
                     alias gomit="git commit -m"
-                    alias gush="git push"
-                    alias gull="git pull"
-                    alias gsus="git status"
-                    alias today="git log --pretty=\"· %s\" --author='Clemente' --since=\"5am\" --no-merges --all"
-                    alias yesterday="git log --pretty=\"· %s\" --author='Clemente' --since=\"yesterday\" --no-merges --all"
+                    alias today="git log --pretty=\"· %s\" --author='Mente' --since=\"5am\" --no-merges --all"
+                    alias yesterday="git log --pretty=\"· %s\" --author='Mente' --since=\"yesterday\" --no-merges --all"
                     alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n"
                     alias f="deno run -A ~/.scripts/launchproject.ts"
-                    alias fs="fuzzysession"
 
                     export ZSH
                     ZSH_THEME="gnzh"
                     plugins=(git direnv)
                     source $ZSH/oh-my-zsh.sh
-                '';
-            };
-
-            programs.tmux = {
-                enable = false;
-                enableMouse = true;
-                enableFzf = true;
-                enableSensible = true;
-                extraConfig = ''
-                    set -ga terminal-overrides ",screen-256color*:Tc"
-                    set-option -g default-terminal "screen-256color"
-                    set-option -g default-shell /bin/zsh
-                    set -s escape-time 0
-                    set -g base-index 1
-                    set -g pane-base-index 1
-                    set -g status-keys vi
-                    set -g status-style "bg=#166275, fg=#ef0038"
-                    set -g mouse on
-                    set-option -g set-titles off
-
-                    set -g prefix C-a
-                    unbind C-b
-                    bind C-a send-prefix
-
-                    bind r source-file ~/.tmux.conf
-                    bind t neww
-                    bind q killw
-                    bind n next
-                    bind w run-shell "~/.scripts/fuzzysession.sh && true"
-
-                    set -g @plugin 'tmux-plugins/tpm'
-                    set -g @plugin 'tmux-plugins/tmux-sensible'
-                    set -g @plugin 'tmux-plugins/tmux-resurrect'
-                    set -g @plugin 'tmux-plugins/tmux-continuum'
-
-                    set -g @continuum-restore 'on'
-                    set -g @tpm-clean 'i'
-
-                    run '~/.tmux/plugins/tpm/tpm'
                 '';
             };
 
@@ -330,9 +284,6 @@
 
                 programs.fzf = {
                     enable = true;
-                    tmux = {
-                        enableShellIntegration = true;
-                    };
                     enableZshIntegration = true;
                 };
 
@@ -360,7 +311,6 @@
                 };
                 # home.file.".zshenv".source = ./../.zshenv;
                 # home.file.".zshrc".source = ./../.zshrc;
-                # home.file.".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink ./../.tmux.conf;
             };
         in
             {

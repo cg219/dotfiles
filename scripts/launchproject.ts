@@ -51,7 +51,9 @@ const zellij = new Deno.Command("zellij", {
         chosenEntry.name,
         "options",
         "--default-cwd",
-        chosenEntry.path
+        chosenEntry.path,
+        "--layout",
+        "dev-2pane"
     ]
 })
 

@@ -1,4 +1,4 @@
-theme "dracula"
+theme "catppuccin-mocha"
 default_mode "locked"
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds clear-defaults=true {
@@ -15,6 +15,14 @@ keybinds clear-defaults=true {
         bind "L" { MoveFocus "Right"; }
         bind "Enter" { SwitchToMode "Locked"; }
         bind "r" { SwitchToMode "Resize"; }
+        bind "w" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Locked"
+        }
+        bind "g" { FocusNextPane; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -213,19 +221,7 @@ keybinds clear-defaults=true {
 }
 
 themes {
-    dracula {
-        fg 248 248 242
-        bg 40 42 54
-        red 255 85 85
-        green 80 250 123
-        yellow 241 250 140
-        blue 98 114 164
-        magenta 255 121 198
-        orange 255 184 108
-        cyan 139 233 253
-        black 0 0 0
-        white 255 255 255
-    }
+
 }
 
 // Plugin aliases - can be used to change the implementation of Zellij

@@ -1,9 +1,21 @@
 layout {
-    pane name="editor" {
-        command="nvim ."
+    pane borderless=true {
+        plugin location="zellij:status-bar"
+        size 1
     }
     pane split_direction="vertical" {
-        pane
-        pane
+        pane borderless=true name="editor" {
+            command "nvim"
+            args "."
+            size "71%"
+        }
+        pane {
+            pane size="85%" name="server"
+            pane name="terminal"
+        }
+    }
+    pane borderless=true {
+        plugin location="zellij:compact-bar"
+        size 1
     }
 }
