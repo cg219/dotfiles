@@ -165,7 +165,25 @@ return {
                             root_dir = lspconfig.util.root_pattern("package.json"),
                             init_options = {
                                 single_file_supper = false
-                            }
+                            },
+                            on_attach = function()
+                                local active_clients = vim.lsp.get_active_clients()
+                                local ts
+                                local denoon = false
+
+                                for _, client in pairs(active_clients) do
+                                    if client.name == "tsserver" then
+                                        ts = client
+                                    end
+                                    if client.name == "denols" then
+                                        denoon = true
+                                    end
+                                end
+
+                                if ts and denoon then
+                                    ts.stop()
+                                end
+                            end,
                         })
                     end,
                     denols = function()
