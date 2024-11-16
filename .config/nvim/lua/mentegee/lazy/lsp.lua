@@ -176,6 +176,14 @@ return {
                                 lint = true,
                                 unstable = true,
                             },
+                            on_attach = function()
+                                local active_clients = vim.lsp.get_active_clients()
+                                for _, client in pairs(active_clients) do
+                                    if client.name == "tsserver" then
+                                        client.stop()
+                                    end
+                                end
+                            end,
                             settings = {
                                 deno = {
                                     enable = true,
@@ -183,8 +191,8 @@ return {
                                         imports = {
                                             autoDiscover = true,
                                             hosts = {
-                                                ["https://jsr.io/"] = true,
-                                                ["https://deno.land/"] = true
+                                                ["https://jsr.io"] = true,
+                                                ["https://deno.land"] = true
                                             }
                                         }
                                     }
