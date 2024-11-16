@@ -2,7 +2,7 @@
     description = "Mente Gee mocOS system flake";
 
     inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+        nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
         darwin.url = "github:LnL7/nix-darwin";
         darwin.inputs.nixpkgs.follows = "nixpkgs";
         home-manager.url = "github:nix-community/home-manager";
@@ -290,7 +290,8 @@
                     enableZshIntegration = true;
                 };
 
-                home.stateVersion = "25.05";
+                home.stateVersion = "24.05";
+                home.enableNixpkgsReleaseCheck = false;
 
                 home.file.".config/freeze" = {
                     source = config.lib.file.mkOutOfStoreSymlink ./../.config/freeze;
