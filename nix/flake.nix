@@ -20,6 +20,7 @@
             nixpkgs.config.allowUnfree = true;
             environment.systemPackages = [
                 pkgs.deno
+                pkgs.podman
                 pkgs.neovim
                 pkgs.git-extras
                 pkgs.gitflow
@@ -138,6 +139,7 @@
                 masApps = {
                     "Magnet" = 441258766;
                     "Bitwarden" = 1352778147;
+                    "Enchanted" = 6474268307;
                 };
                 onActivation.autoUpdate = true;
                 onActivation.upgrade = true;
