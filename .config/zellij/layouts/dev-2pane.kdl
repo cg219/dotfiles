@@ -4,14 +4,15 @@ layout {
         size 1
     }
     pane split_direction="vertical" {
+        pane {
+            pane size="80%" name="server"
+            pane name="terminal"
+        }
         pane borderless=true name="editor" {
             command "nvim"
             args "."
             size "71%"
-        }
-        pane {
-            pane size="85%" name="server"
-            pane name="terminal"
+            focus true
         }
     }
     pane borderless=true {

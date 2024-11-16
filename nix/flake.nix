@@ -209,6 +209,7 @@
                     alias yesterday="git log --pretty=\"· %s\" --author='Mente' --since=\"yesterday\" --no-merges --all"
                     alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n"
                     alias f="deno run -A ~/.scripts/launchproject.ts"
+                    alias zj="zellij a $(zellij list-sessions -rs | head -n 1)"
 
                     export ZSH
                     ZSH_THEME="gnzh"

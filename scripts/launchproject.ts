@@ -20,14 +20,10 @@ const atDir = await Array.fromAsync(walk(join(home, "development", "ActiveTheory
 
 const entries = [...devDir, ...webDir, ...atDir]
 const files  = distinctBy(entries, (entry) => entry.path)
-const filesAsList = files.map((f) => f.name).join("\n")
-const fzf = new Deno.Command("fzf", {
-    stdin: "piped",
-    stdout: "piped"
-})
-
+const fzf = new Deno.Command("fzf", { stdin: "piped", stdout: "piped" })
 const fzfp = fzf.spawn()
 const pwriter = fzfp.stdin.getWriter()
+const filesAsList = files.map((f) => f.name).join("\n")
 
 pwriter.write(new TextEncoder().encode(filesAsList))
 pwriter.releaseLock()
@@ -44,7 +40,7 @@ const chosenEntry = files.find((f) => {
 
 if (!chosenEntry) Deno.exit();
 
-const zellij = new Deno.Command("zellij", {
+await new Deno.Command("zellij", {
     args: [
         "attach",
         "-c",
@@ -52,10 +48,8 @@ const zellij = new Deno.Command("zellij", {
         "options",
         "--default-cwd",
         chosenEntry.path,
-        "--layout",
-        "dev-2pane"
+        "--default-layout",
+        "dev-2pane",
     ]
-})
+}).spawn().output()
 
-const zellp = zellij.spawn()
-await zellp.output()
