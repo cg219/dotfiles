@@ -147,12 +147,6 @@
             };
 
             # Auto upgrade nix package and the daemon service.
-            services.nix-daemon.enable = true;
-            nix.package = pkgs.nix;
-
-            # Necessary for using flakes on this system.
-            nix.settings.experimental-features = ["nix-command" "flakes"];
-
             environment.variables = {
                 GOPATH = "$HOME/go";
                 DENO_INSTALL = "$HOME/.deno";
@@ -218,71 +212,6 @@
                     plugins=(git direnv)
                     source $ZSH/oh-my-zsh.sh
                 '';
-            };
-
-            system.configurationRevision = self.rev or self.dirtyRev or null;
-
-            system.stateVersion = 4;
-
-            system.defaults = {
-                dock = {
-                    autohide = true;
-                    autohide-delay = 0.1;
-                    autohide-time-modifier = 0.3;
-                    magnification = true;
-                    mineffect = "scale";
-                    orientation = "left";
-                    tilesize = 31;
-                    largesize = 96;
-                    expose-group-by-app = false;
-                    dashboard-in-overlay = true;
-                    persistent-apps = [
-                        "/Applications/Nix Apps/kitty.app"
-                        "/Applications/Nix Apps/Spotify.app"
-                    ];
-                    persistent-others = [
-                        "~/Downloads"
-                    ];
-                    show-recents = false;
-                    launchanim = false;
-                };
-
-                NSGlobalDomain = {
-                    "com.apple.trackpad.forceClick" = true;
-                    "com.apple.keyboard.fnState" = true;
-                    "com.apple.swipescrolldirection" = true;
-                    AppleInterfaceStyle = "Dark";
-                    NSNavPanelExpandedStateForSaveMode = true;
-                    NSNavPanelExpandedStateForSaveMode2 = true;
-                };
-
-                finder = {
-                    ShowPathbar = true;
-                    ShowStatusBar = true;
-                };
-
-                ".GlobalPreferences" = {
-                    "com.apple.mouse.scaling" = 2.5;
-                };
-
-                screencapture = {
-                    type = "jpg";
-                    location = "~/Dropbox/System/screenshots";
-                };
-
-                controlcenter = {
-                    Bluetooth = true;
-                    AirDrop = true;
-                };
-            };
-
-            nixpkgs.hostPlatform = "aarch64-darwin";
-            security.pam.enableSudoTouchIdAuth = true;
-
-            users.users.mentegee = {
-                name = "mentegee";
-                home = "/Users/mentegee";
-                shell = pkgs.zsh;
             };
 
             system.activationScripts.applications.text = let
@@ -357,8 +286,10 @@
             # Build darwin flake using:
             # $ darwin-rebuild build --flake .#simple
             darwinConfigurations."dev-macOS" = darwin.lib.darwinSystem {
+                specialArgs = { inherit inputs; };
                 modules = [
                     configuration
+                    ./configuration.nix
                     nix-homebrew.darwinModules.nix-homebrew {
                         nix-homebrew = {
                             enable = true;
