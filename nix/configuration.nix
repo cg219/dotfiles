@@ -4,6 +4,7 @@
     services.nix-daemon.enable = true;
 
     nixpkgs.hostPlatform = "aarch64-darwin";
+    nixpkgs.config.allowUnfree = true;
     nix.package = pkgs.nix;
     nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -55,7 +56,6 @@
         shell = pkgs.zsh;
     };
 
-    system.configurationRevision = self.rev or self.dirtyRev or null;
     system.stateVersion = 4;
     security.pam.enableSudoTouchIdAuth = true;
 }
