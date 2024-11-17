@@ -223,23 +223,59 @@
             system.configurationRevision = self.rev or self.dirtyRev or null;
 
             system.stateVersion = 4;
-            system.defaults.dock.autohide = true;
-            system.defaults.dock.magnification = true;
-            system.defaults.dock.mineffect = "scale";
-            system.defaults.dock.orientation = "left";
-            system.defaults.dock.tilesize = 31;
-            system.defaults.dock.largesize = 96;
-            system.defaults.dock.expose-group-by-app = false;
-            system.defaults.dock.dashboard-in-overlay = true;
-            system.defaults.NSGlobalDomain."com.apple.trackpad.forceClick" = true;
-            system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = true;
-            system.defaults.NSGlobalDomain."com.apple.keyboard.fnState" = true;
-            system.defaults.".GlobalPreferences"."com.apple.mouse.scaling" = 2.5;
-            system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
-            system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
-            system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
-            system.defaults.finder.ShowPathbar = true;
-            system.defaults.finder.ShowStatusBar = true;
+
+            system.defaults = {
+                dock = {
+                    autohide = true;
+                    autohide-delay = 0.1;
+                    autohide-time-modifier = 0.3;
+                    magnification = true;
+                    mineffect = "scale";
+                    orientation = "left";
+                    tilesize = 31;
+                    largesize = 96;
+                    expose-group-by-app = false;
+                    dashboard-in-overlay = true;
+                    persistent-apps = [
+                        "/Applications/Nix Apps/kitty.app"
+                        "/Applications/Nix Apps/Spotify.app"
+                    ];
+                    persistent-others = [
+                        "~/Downloads"
+                    ];
+                    show-recents = false;
+                    launchanim = false;
+                };
+
+                NSGlobalDomain = {
+                    "com.apple.trackpad.forceClick" = true;
+                    "com.apple.keyboard.fnState" = true;
+                    "com.apple.swipescrolldirection" = true;
+                    AppleInterfaceStyle = "Dark";
+                    NSNavPanelExpandedStateForSaveMode = true;
+                    NSNavPanelExpandedStateForSaveMode2 = true;
+                };
+
+                finder = {
+                    ShowPathbar = true;
+                    ShowStatusBar = true;
+                };
+
+                ".GlobalPreferences" = {
+                    "com.apple.mouse.scaling" = 2.5;
+                };
+
+                screencapture = {
+                    type = "jpg";
+                    location = "~/Dropbox/System/screenshots";
+                };
+
+                controlcenter = {
+                    Bluetooth = true;
+                    AirDrop = true;
+                };
+            };
+
             nixpkgs.hostPlatform = "aarch64-darwin";
             security.pam.enableSudoTouchIdAuth = true;
 
