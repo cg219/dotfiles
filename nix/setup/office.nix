@@ -14,15 +14,15 @@
     homebrew = {
         enable = true;
         casks = [
-            "alfred";
-            "arc";
-            "hoppscotch";
-            "notion-calendar";
-            "sublime-text";
-            "rightfont";
-            "sf-symbols";
-            "font-ubuntu-mono-nerd-font";
-            "vlc";
+            "alfred"
+            "arc"
+            "hoppscotch"
+            "notion-calendar"
+            "sublime-text"
+            "rightfont"
+            "sf-symbols"
+            "font-ubuntu-mono-nerd-font"
+            "vlc"
         ];
         masApps = {
             "Magnet" = 441258766;

@@ -8,10 +8,10 @@
     homebrew = {
         enable = true;
         casks = [
-            "calibre";
-            "ledger-live";
-            "rightfont";
-            "sf-symbols";
+            "calibre"
+            "ledger-live"
+            "rightfont"
+            "sf-symbols"
         ];
         masApps = {
             "Bitwarden" = 1352778147;

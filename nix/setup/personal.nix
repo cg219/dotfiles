@@ -11,17 +11,17 @@
     homebrew = {
         enable = true;
         casks = [
-            "affinity-designer";
-            "affinity-photo";
-            "affinity-publisher";
-            "alfred";
-            "arc";
-            "calibre";
-            "hoppscotch";
-            "notion-calendar";
-            "ledger-live";
-            "dropbox";
-            "vlc";
+            "affinity-designer"
+            "affinity-photo"
+            "affinity-publisher"
+            "alfred"
+            "arc"
+            "calibre"
+            "hoppscotch"
+            "notion-calendar"
+            "ledger-live"
+            "dropbox"
+            "vlc"
         ];
         masApps = {
             "Bitwarden" = 1352778147;

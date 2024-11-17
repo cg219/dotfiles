@@ -27,12 +27,12 @@
     homebrew = {
         enable = true;
         casks = [
-            "alfred";
-            "hoppscotch";
-            "balenaetcher";
-            "sublime-text";
-            "sublime-merge";
-            "font-ubuntu-mono-nerd-font";
+            "alfred"
+            "hoppscotch"
+            "balenaetcher"
+            "sublime-text"
+            "sublime-merge"
+            "font-ubuntu-mono-nerd-font"
         ];
         masApps = {
             "Magnet" = 441258766;
