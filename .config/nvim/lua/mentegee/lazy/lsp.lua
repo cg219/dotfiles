@@ -115,7 +115,7 @@ return {
 
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "swift_mesonls" },
+                ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "emmet_ls" },
                 handlers = {
                     lsp_zero.default_setup,
                     emmet_langauge_server = function()

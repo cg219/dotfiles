@@ -23,6 +23,7 @@
             "dropbox"
             "vlc"
         ];
+        caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
             "Bitwarden" = 1352778147;
         };

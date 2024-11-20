@@ -24,6 +24,7 @@
             "font-ubuntu-mono-nerd-font"
             "vlc"
         ];
+        caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
             "Magnet" = 441258766;
             "Bitwarden" = 1352778147;

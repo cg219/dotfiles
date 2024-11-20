@@ -34,6 +34,7 @@
             "sublime-merge"
             "font-ubuntu-mono-nerd-font"
         ];
+        caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
             "Magnet" = 441258766;
             "Bitwarden" = 1352778147;
