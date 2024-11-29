@@ -118,8 +118,8 @@ return {
                 ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "emmet_ls" },
                 handlers = {
                     lsp_zero.default_setup,
-                    emmet_langauge_server = function()
-                        lspconfig.emmet_language_server.setup({
+                    emmet_ls = function()
+                        lspconfig.emmet_ls.setup({
                             filetypes = { "css", "html" },
                             -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
                             -- **Note:** only the options listed in the table are supported.
