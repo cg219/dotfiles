@@ -8,6 +8,7 @@ return {
                 ['ui-select'] = {
                     require('telescope.themes').get_dropdown(),
                 },
+                fzf = {}
             },
         }
 
@@ -19,7 +20,7 @@ return {
 
         vim.keymap.set('n', '<leader>gs', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ")})
-        end, { desc = '[F]ind [H]elp' })
+        end, { desc = '[G]rep [S]earch' })
 
 
         -- See `:help telescope.builtin`
