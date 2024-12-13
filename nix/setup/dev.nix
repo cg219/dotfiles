@@ -22,6 +22,7 @@
         pkgs.direnv
         pkgs.tailscale
         pkgs.ollama
+        pkgs.goose
     ];
 
     homebrew = {

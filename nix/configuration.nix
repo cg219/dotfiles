@@ -18,7 +18,7 @@
             orientation = "left";
             tilesize = 31;
             largesize = 96;
-            expose-group-by-app = false;
+            expose-group-apps = false;
             dashboard-in-overlay = true;
             persistent-apps = [];
             persistent-others = [
