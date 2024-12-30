@@ -26,10 +26,10 @@
         source = config.lib.file.mkOutOfStoreSymlink ./../.config/freeze;
         recursive =  true;
     };
-    home.file.".config/ghostty" = {
-        source = config.lib.file.mkOutOfStoreSymlink ./../.config/ghostty;
-        recursive =  true;
-    };
+    # home.file.".config/ghostty" = {
+    #     source = config.lib.file.mkOutOfStoreSymlink ./../.config/ghostty;
+    #     recursive =  true;
+    # };
     home.file.".config/kitty" = {
         source = config.lib.file.mkOutOfStoreSymlink ./../.config/kitty;
         recursive =  true;
