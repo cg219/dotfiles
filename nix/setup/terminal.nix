@@ -11,6 +11,20 @@
         pkgs.oh-my-zsh
     ];
 
+    homebrew = {
+        enable = true;
+        casks = [
+            "ghostty"
+        ];
+        caskArgs.appdir = "/Applications/Homebrew Apps";
+        masApps = {
+            "Bitwarden" = 1352778147;
+        };
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
+        onActivation.cleanup = "uninstall";
+    };
+
     environment.variables = {
         GOPATH = "$HOME/go";
         DENO_INSTALL = "$HOME/.deno";
