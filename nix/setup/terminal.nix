@@ -8,7 +8,6 @@
         pkgs.zellij
         pkgs.cargo
         pkgs.gnugrep
-        pkgs.kitty
         pkgs.oh-my-zsh
     ];
 

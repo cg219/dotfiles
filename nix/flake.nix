@@ -9,6 +9,7 @@
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
         nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+        nix-homebrew.inputs.nixpkgs.follows = "nixpkgs";
         brew-core.url = "github:homebrew/homebrew-core";
         brew-core.flake = false;
         brew-cask.url = "github:homebrew/homebrew-cask";

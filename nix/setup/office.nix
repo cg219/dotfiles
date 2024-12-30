@@ -2,7 +2,7 @@
 {
     environment.systemPackages = [
         pkgs.mas
-        pkgs.bruno
+        # pkgs.bruno
         pkgs.tableplus
         pkgs.obsidian
         pkgs.slack

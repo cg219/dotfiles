@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 {
     environment.systemPackages = [
-        pkgs.podman
         pkgs.neovim
         pkgs.git-extras
         pkgs.gitflow
@@ -34,6 +33,7 @@
             "sublime-text"
             "sublime-merge"
             "font-ubuntu-mono-nerd-font"
+            "docker"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {

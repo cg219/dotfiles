@@ -19,11 +19,15 @@
         enableZshIntegration = true;
     };
 
-    home.stateVersion = "24.05";
+    home.stateVersion = "24.11";
     home.enableNixpkgsReleaseCheck = false;
 
     home.file.".config/freeze" = {
         source = config.lib.file.mkOutOfStoreSymlink ./../.config/freeze;
+        recursive =  true;
+    };
+    home.file.".config/ghostty" = {
+        source = config.lib.file.mkOutOfStoreSymlink ./../.config/ghostty;
         recursive =  true;
     };
     home.file.".config/kitty" = {
