@@ -34,6 +34,7 @@
         USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
         CHARM_HOST = "localhost";
         FZF_DEFAULT_OPTS = "--tmux";
+        EDITOR = "nvim";
     };
 
     programs.zsh = {
