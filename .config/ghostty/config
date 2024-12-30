@@ -4,5 +4,5 @@ font-family=UbuntuMono Nerd Font Mono
 font-size=16
 background-opacity=0.9
 font-thicken=true
-keybind = global:cmd+opt+space=toggle_visibility
-keybind = global:ctrl+t>t=toggle_quick_terminal
+quick-terminal-authohide=true
+keybind = global:cmd+alt+space=toggle_quick_terminal
