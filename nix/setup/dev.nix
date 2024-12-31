@@ -19,7 +19,6 @@
         pkgs.ffmpeg
         pkgs.darwin.trash
         pkgs.direnv
-        pkgs.tailscale
         pkgs.ollama
         pkgs.goose
     ];

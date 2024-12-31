@@ -2,9 +2,6 @@
 {
     environment.systemPackages = [
         pkgs.mas
-        pkgs.discord
-        pkgs.obsidian
-        pkgs.spotify
         pkgs.darwin.trash
     ];
 
@@ -22,6 +19,10 @@
             "ledger-live"
             "dropbox"
             "vlc"
+            "discord"
+            "obsidian"
+            "spotify"
+            "tailscale"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {

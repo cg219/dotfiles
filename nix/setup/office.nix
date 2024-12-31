@@ -2,13 +2,7 @@
 {
     environment.systemPackages = [
         pkgs.mas
-        # pkgs.bruno
-        pkgs.tableplus
-        pkgs.obsidian
-        pkgs.slack
-        pkgs.spotify
         pkgs.nodejs
-        pkgs.tailscale
     ];
 
     homebrew = {
@@ -23,6 +17,8 @@
             "sf-symbols"
             "font-ubuntu-mono-nerd-font"
             "vlc"
+            "tableplus"
+            "slack"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
