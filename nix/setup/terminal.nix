@@ -64,6 +64,10 @@
                 killall Finder /System/Library/CoreServices/Finder.app
             }
 
+            function dk() {
+                docker rm -f $1;
+            }
+
             alias switch="darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS"
             alias mente="cd ~"
             alias desk="cd ~/Desktop"
@@ -83,6 +87,11 @@
             alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n"
             alias f="deno run -A ~/.scripts/launchproject.ts"
             alias zj="zellij a $(zellij list-sessions -rs | head -n 1)"
+            alias dcl="docker context use desktop-linux"
+            alias ds="docker ps"
+            alias dcd="docker compose down"
+            alias dcu="docker compose up -d"
+            alias dcub="docker compose up -d --build"
 
             export ZSH
             ZSH_THEME="gnzh"

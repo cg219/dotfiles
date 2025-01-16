@@ -1,7 +1,7 @@
 theme=dracula
 shell-integration=zsh
 font-family=UbuntuMono Nerd Font Mono
-font-size=16
+font-size=20
 background-opacity=0.9
 font-thicken=true
 quick-terminal-autohide=true
