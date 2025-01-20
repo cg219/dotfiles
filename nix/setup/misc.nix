@@ -3,6 +3,9 @@
     environment.systemPackages = [
         pkgs.tree
         pkgs.mpv
+        pkgs.tldr
+        pkgs.bat
+        pkgs.zoxide
     ];
 
     homebrew = {

@@ -92,6 +92,7 @@
             alias dcd="docker compose down"
             alias dcu="docker compose up -d"
             alias dcub="docker compose up -d --build"
+            alias z="zoxide"
 
             export ZSH
             ZSH_THEME="gnzh"
