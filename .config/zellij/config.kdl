@@ -7,12 +7,12 @@ keybinds clear-defaults=true {
         bind "x" { CloseFocus; SwitchToMode "Locked"; }
         bind "t" { NewTab; SwitchToMode "Locked"; }
         bind "q" { CloseTab; SwitchToMode "Locked"; }
-        bind "l" "Right" { GoToNextTab; }
-        bind "h" "Left" { GoToPreviousTab; }
-        bind "J" { MoveFocus "Down"; }
-        bind "K" { MoveFocus "Up"; }
-        bind "H" { MoveFocus "Left"; }
-        bind "L" { MoveFocus "Right"; }
+        bind "L" "Right" { GoToNextTab; }
+        bind "H" "Left" { GoToPreviousTab; }
+        bind "j" { MoveFocus "Down"; }
+        bind "k" { MoveFocus "Up"; }
+        bind "h" { MoveFocus "Left"; }
+        bind "l" { MoveFocus "Right"; }
         bind "Enter" { SwitchToMode "Locked"; }
         bind "r" { SwitchToMode "Resize"; }
         bind "w" {
