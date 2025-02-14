@@ -16,7 +16,7 @@
         pkgs.skate
         pkgs.charm
         pkgs.nodejs
-        pkgs.jellyfin-ffmpeg
+        # pkgs.ffmpeg
         pkgs.darwin.trash
         pkgs.direnv
         pkgs.ollama

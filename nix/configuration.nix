@@ -1,12 +1,11 @@
 { pkgs, lib, ... }:
 
 {
-    services.nix-daemon.enable = true;
-
     nixpkgs.hostPlatform = "aarch64-darwin";
     nixpkgs.config.allowUnfree = true;
     nix.package = pkgs.nix;
     nix.settings.experimental-features = ["nix-command" "flakes"];
+    nix.enable = true;
 
     system.defaults = {
         dock = {
@@ -56,6 +55,6 @@
         shell = pkgs.zsh;
     };
 
-    system.stateVersion = 4;
+    system.stateVersion = 5;
     security.pam.enableSudoTouchIdAuth = true;
 }
