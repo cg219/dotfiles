@@ -1,6 +1,6 @@
-import { walk } from "@std/fs";
-import { join } from "@std/path/join";
-import { distinctBy } from "@std/collections";
+import { walk } from "jsr:@std/fs";
+import { join } from "jsr:@std/path/join";
+import { distinctBy } from "jsr:@std/collections";
 
 const home = Deno.env.get("HOME") ?? "/";
 const devDir = await Array.fromAsync(walk(join(home, "development"), {
