@@ -34,6 +34,9 @@
             "font-ubuntu-mono-nerd-font"
             "docker"
         ];
+        brews = [
+            "ffmpeg"
+        ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
             "Magnet" = 441258766;

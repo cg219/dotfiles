@@ -1,9 +1,9 @@
 { pkgs, lib, ... }:
 {
     environment.systemPackages = [
-        pkgs.deno
+        # pkgs.deno
         pkgs.wget
-        pkgs.go
+        # pkgs.go
         pkgs.mkalias
         pkgs.zellij
         pkgs.cargo
@@ -15,6 +15,10 @@
         enable = true;
         casks = [
             "ghostty"
+        ];
+        brews = [
+            "deno"
+            "go"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
