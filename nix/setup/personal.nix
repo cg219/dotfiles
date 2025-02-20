@@ -13,6 +13,7 @@
             "affinity-publisher"
             "alfred"
             "arc"
+            "zen-browser"
             "calibre"
             "hoppscotch"
             "notion-calendar"

@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 {
-    nixpkgs.config.allowUnfree = true;
+    # nixpkgs.config.allowUnfree = true;
     home.packages = [];
     programs.home-manager.enable = true;
     programs.git = {
