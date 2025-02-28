@@ -33,6 +33,7 @@
             "sublime-merge"
             "font-ubuntu-mono-nerd-font"
             "docker"
+            "msty"
         ];
         brews = [
             "ffmpeg"
