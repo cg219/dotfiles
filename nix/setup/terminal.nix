@@ -90,7 +90,7 @@
             alias yesterday="git log --pretty=\"· %s\" --author='Mente' --since=\"yesterday\" --no-merges --all"
             alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && n"
             alias f="deno run -A --no-lock ~/.scripts/launchproject.ts"
-            alias recode="deno --allow-run -RW ~/.scripts/recode.ts < recode.yaml"
+            alias recode="deno --no-lock --allow-run -RW ~/.scripts/recode.ts < recode.yaml"
             alias zj="zellij a $(zellij list-sessions -rs | head -n 1)"
             alias dcl="docker context use desktop-linux"
             alias ds="docker ps"
