@@ -37,6 +37,7 @@
         ];
         brews = [
             "ffmpeg"
+            "hashicorp/tap/terraform"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {

@@ -14,9 +14,11 @@
         brew-core.flake = false;
         brew-cask.url = "github:homebrew/homebrew-cask";
         brew-cask.flake = false;
+        brew-hashi.url = "github:hashicorp/homebrew-tap";
+        brew-hashi.flake = false;
     };
 
-    outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-core, brew-cask, home-manager }:
+    outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-core, brew-cask, brew-hashi, home-manager }:
         let configuration = { pkgs, config, ... }: {
             system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -65,6 +67,7 @@
                             taps = {
                                 "homebrew/homebrew-core" = brew-core;
                                 "homebrew/homebrew-cask" = brew-cask;
+                                "hashicorp/tap" = brew-hashi;
                             };
                         };
                     }
