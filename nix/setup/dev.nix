@@ -2,25 +2,21 @@
 {
     environment.systemPackages = [
         pkgs.neovim
-        pkgs.git-extras
-        pkgs.gitflow
         pkgs.mas
         pkgs.lua
         pkgs.lazygit
         pkgs.libfido2
         pkgs.turso-cli
-        pkgs.android-tools
-        pkgs.cron
+        # pkgs.android-tools
         pkgs.docker-compose
         pkgs.charm-freeze
         pkgs.skate
-        pkgs.charm
         pkgs.nodejs
-        # pkgs.ffmpeg
         pkgs.darwin.trash
         pkgs.direnv
         pkgs.ollama
         pkgs.goose
+        pkgs.just
     ];
 
     homebrew = {
@@ -33,6 +29,7 @@
             "sublime-merge"
             "font-ubuntu-mono-nerd-font"
             "docker"
+            "hoppscotch"
             "msty"
         ];
         brews = [

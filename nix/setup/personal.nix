@@ -15,7 +15,6 @@
             "arc"
             "zen-browser"
             "calibre"
-            "hoppscotch"
             "notion-calendar"
             "ledger-live"
             "dropbox"
@@ -23,7 +22,6 @@
             "discord"
             "obsidian"
             "spotify"
-            "tailscale"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {

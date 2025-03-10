@@ -1,10 +1,7 @@
 { pkgs, lib, ... }:
 {
     environment.systemPackages = [
-        # pkgs.deno
         pkgs.wget
-        # pkgs.go
-        pkgs.mkalias
         pkgs.zellij
         pkgs.cargo
         pkgs.gnugrep
@@ -15,6 +12,7 @@
         enable = true;
         casks = [
             "ghostty"
+            "tailscale"
         ];
         brews = [
             "deno"
@@ -97,7 +95,6 @@
             alias dcd="docker compose down"
             alias dcu="docker compose up -d"
             alias dcub="docker compose up -d --build"
-            alias z="zoxide"
 
             export ZSH
             ZSH_THEME="gnzh"

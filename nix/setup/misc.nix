@@ -5,7 +5,6 @@
         pkgs.mpv
         pkgs.tldr
         pkgs.bat
-        pkgs.zoxide
     ];
 
     homebrew = {
