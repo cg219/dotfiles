@@ -2,13 +2,15 @@
 {
     environment.systemPackages = [
         pkgs.tree
-        pkgs.mpv
         pkgs.tldr
         pkgs.bat
     ];
 
     homebrew = {
         enable = true;
+        brews = [
+            "mpv"
+        ];
         casks = [
             "calibre"
             "ledger-live"
