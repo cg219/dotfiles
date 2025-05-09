@@ -10,6 +10,7 @@
         enable = true;
         brews = [
             "mpv"
+            "yt-dlp"
         ];
         casks = [
             "calibre"

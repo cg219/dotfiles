@@ -165,6 +165,10 @@ function getProgress(frames: ReadableStream, progress: ReadableStream) {
 }
 
 function getBar(percent: number, width: number = 50) {
+    if (!Number.isFinite(percent)) {
+        return `${colorCodes.red}Processing: ${colorCodes.yellow}: Unknown Progress${colorCodes.reset}`
+    }
+
     const fill = Math.floor((percent / 100) * width);
 
     if (percent >= 100) {
@@ -233,6 +237,7 @@ async function run(input: string, output: string) {
             // Deno.stdout.write(encoder.encode(`\rProcessing... ${current}% : ${f}/${t}: continue: ${e}`))
 
             if (!e) break;
+
             Deno.stdout.write(encoder.encode(`\r${getBar(Number(current))}`))
             // console.log(Math.round(current * 100));
             // } else {

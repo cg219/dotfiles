@@ -42,7 +42,7 @@
         ".GlobalPreferences"."com.apple.mouse.scaling" = 2.5;
 
         screencapture.type = "jpg";
-        screencapture.location = "~/Dropbox/System/screenshots";
+        screencapture.location = "/Users/mentegee/Screenshots";
 
         controlcenter.Bluetooth = true;
         controlcenter.AirDrop = true;
