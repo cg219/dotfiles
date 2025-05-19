@@ -21,6 +21,7 @@
     outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-core, brew-cask, brew-hashi, home-manager }:
         let configuration = { pkgs, config, ... }: {
             system.configurationRevision = self.rev or self.dirtyRev or null;
+            system.primaryUser = "mentegee";
 
             imports = [
                 ./setup/all.nix
