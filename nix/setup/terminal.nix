@@ -70,7 +70,7 @@
                 docker rm -f $1;
             }
 
-            alias switch="darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS"
+            alias switch="sudo darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS"
             alias mente="cd ~"
             alias desk="cd ~/Desktop"
             alias web="cd ~/websites"

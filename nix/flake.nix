@@ -16,9 +16,11 @@
         brew-cask.flake = false;
         brew-hashi.url = "github:hashicorp/homebrew-tap";
         brew-hashi.flake = false;
+        brew-tinygo.url = "github:tinygo-org/homebrew-tools";
+        brew-tinygo.flake = false;
     };
 
-    outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-core, brew-cask, brew-hashi, home-manager }:
+    outputs = inputs@{ self, darwin, nixpkgs, nix-homebrew, brew-core, brew-cask, brew-hashi, brew-tinygo, home-manager }:
         let configuration = { pkgs, config, ... }: {
             system.configurationRevision = self.rev or self.dirtyRev or null;
             system.primaryUser = "mentegee";
@@ -69,6 +71,7 @@
                                 "homebrew/homebrew-core" = brew-core;
                                 "homebrew/homebrew-cask" = brew-cask;
                                 "hashicorp/tap" = brew-hashi;
+                                "tinygo-org/tools" = brew-tinygo;
                             };
                         };
                     }
