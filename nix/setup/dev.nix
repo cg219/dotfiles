@@ -43,6 +43,7 @@
             "Magnet" = 441258766;
             "Bitwarden" = 1352778147;
             "Enchanted" = 6474268307;
+            "Xcode" = 497799835;
         };
         onActivation.autoUpdate = true;
         onActivation.upgrade = true;
