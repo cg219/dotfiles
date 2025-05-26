@@ -17,6 +17,7 @@
         brews = [
             "deno"
             "go"
+            "ripgrep"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
