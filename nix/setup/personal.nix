@@ -13,7 +13,7 @@
             "affinity-publisher"
             "alfred"
             "arc"
-            # "zen-browser"
+            "zen"
             "calibre"
             "notion-calendar"
             "ledger-live"
