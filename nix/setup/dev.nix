@@ -17,6 +17,8 @@
         pkgs.ollama
         pkgs.goose
         pkgs.just
+        pkgs.python3
+        pkgs.ruby_3_4
     ];
 
     homebrew = {
@@ -37,6 +39,7 @@
             "hashicorp/tap/terraform"
             "tinygo"
             "avrdude"
+            "cocoapods"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
