@@ -19,6 +19,7 @@
             "vlc"
             "tableplus"
             "slack"
+            "proton-mail"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
