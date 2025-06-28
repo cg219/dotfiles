@@ -117,7 +117,7 @@ return {
 
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "emmet_ls" },
+                ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "ts_ls", "emmet_ls" },
                 handlers = {
                     lsp_zero.default_setup,
                     emmet_ls = function()
@@ -162,7 +162,7 @@ return {
                             }
                         })
                     end,
-                    tsserver = function()
+                    ts_ls = function()
                         lspconfig.tsserver.setup({
                             root_dir = lspconfig.util.root_pattern("package.json"),
                             init_options = {

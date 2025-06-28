@@ -40,6 +40,7 @@
             "tinygo"
             "avrdude"
             "cocoapods"
+            "jj"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
