@@ -163,7 +163,7 @@ return {
                         })
                     end,
                     ts_ls = function()
-                        lspconfig.tsserver.setup({
+                        lspconfig.ts_ls.setup({
                             root_dir = lspconfig.util.root_pattern("package.json"),
                             init_options = {
                                 single_file_supper = false
@@ -174,7 +174,7 @@ return {
                                 local denoon = false
 
                                 for _, client in pairs(active_clients) do
-                                    if client.name == "tsserver" then
+                                    if client.name == "ts_ls" then
                                         ts = client
                                     end
                                     if client.name == "denols" then
@@ -199,7 +199,7 @@ return {
                             on_attach = function()
                                 local active_clients = vim.lsp.get_active_clients()
                                 for _, client in pairs(active_clients) do
-                                    if client.name == "tsserver" then
+                                    if client.name == "ts_ls" then
                                         client.stop()
                                     end
                                 end
