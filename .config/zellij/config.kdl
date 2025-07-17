@@ -16,6 +16,7 @@ keybinds clear-defaults=true {
         bind "l" { MoveFocus "Right"; }
         bind "Enter" { SwitchToMode "Locked"; }
         bind "r" { SwitchToMode "Resize"; }
+        bind "m" { SwitchToMode "Move"; }
         bind "w" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
@@ -24,6 +25,11 @@ keybinds clear-defaults=true {
             SwitchToMode "Locked"
         }
         bind "g" { FocusNextPane; }
+        bind "1" { GoToTab 1; SwitchToMode "Locked"; }
+        bind "2" { GoToTab 2; SwitchToMode "Locked"; }
+        bind "3" { GoToTab 3; SwitchToMode "Locked"; }
+        bind "4" { GoToTab 4; SwitchToMode "Locked"; }
+        bind "5" { GoToTab 5; SwitchToMode "Locked"; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -43,6 +49,7 @@ keybinds clear-defaults=true {
     }
     pane {
         // bind "Ctrl p" { SwitchToMode "Normal"; }
+        bind "Enter" { SwitchToMode "Locked"; }
         bind "h" "Left" { MoveFocus "Left"; }
         bind "l" "Right" { MoveFocus "Right"; }
         bind "j" "Down" { MoveFocus "Down"; }
@@ -59,9 +66,10 @@ keybinds clear-defaults=true {
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
-        bind "Ctrl h" { SwitchToMode "Normal"; }
+        bind "Enter" { SwitchToMode "Locked"; }
+        // bind "Ctrl h" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
-        bind "p" { MovePaneBackwards; }
+        bind "m" { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
         bind "j" "Down" { MovePane "Down"; }
         bind "k" "Up" { MovePane "Up"; }
