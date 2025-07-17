@@ -30,7 +30,7 @@
             "sublime-text"
             "sublime-merge"
             "font-ubuntu-mono-nerd-font"
-            "docker"
+            # "docker"
             "hoppscotch"
             "msty"
         ];
