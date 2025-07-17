@@ -12,7 +12,7 @@
         enable = true;
         casks = [
             "ghostty"
-            "tailscale"
+            # "tailscale"
         ];
         brews = [
             "deno"
