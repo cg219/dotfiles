@@ -49,7 +49,7 @@ await new Deno.Command("zellij", {
         "--default-cwd",
         chosenEntry.path,
         "--default-layout",
-        "dev-2pane",
+        "normal",
     ]
 }).spawn().output()
 
