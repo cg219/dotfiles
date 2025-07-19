@@ -2,7 +2,6 @@
 {
     environment.systemPackages = [
         pkgs.tree
-        pkgs.tldr
         pkgs.bat
     ];
 
@@ -17,6 +16,7 @@
             "ledger-live"
             "rightfont"
             "sf-symbols"
+            "tealdeer"
         ];
         caskArgs.appdir = "/Applications/Homebrew Apps";
         masApps = {
