@@ -1,0 +1,12 @@
+layout {
+    pane borderless=true {
+        plugin location="zellij:status-bar"
+        size 1
+    }
+    pane
+    pane borderless=true {
+        plugin location="zellij:compact-bar"
+        size 1
+    }
+}
+

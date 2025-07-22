@@ -1,0 +1,22 @@
+layout {
+    pane borderless=true {
+        plugin location="zellij:status-bar"
+        size 1
+    }
+    pane split_direction="vertical" {
+        pane {
+            pane size="80%" name="server"
+            pane name="terminal"
+        }
+        pane borderless=true name="editor" {
+            command "nvim"
+            args "."
+            size "71%"
+            focus true
+        }
+    }
+    pane borderless=true {
+        plugin location="zellij:compact-bar"
+        size 1
+    }
+}

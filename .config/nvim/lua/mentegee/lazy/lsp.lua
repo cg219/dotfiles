@@ -85,6 +85,8 @@ return {
                 --  See `:help K` for why this keymap
                 map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
+                map('<leader>h', vim.diagnostic.open_float, 'Hover Diagnostics')
+
                 -- WARN: This is not Goto Definition, this is Goto Declaration.
                 --  For example, in C this would take you to the header
                 map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -115,36 +117,36 @@ return {
 
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "tsserver", "swift_mesonls" },
+                ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "ts_ls", "emmet_ls" },
                 handlers = {
                     lsp_zero.default_setup,
-                    -- emmet_langauge_server = function()
-                    --     lspconfig.emmet_language_server.setup({
-                    --         filetypes = { "css", "html" },
-                    --         -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
-                    --         -- **Note:** only the options listed in the table are supported.
-                    --         init_options = {
-                    --             ---@type table<string, string>
-                    --             includeLanguages = {},
-                    --             --- @type string[]
-                    --             excludeLanguages = {},
-                    --             --- @type string[]
-                    --             extensionsPath = {},
-                    --             --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
-                    --             preferences = {},
-                    --             --- @type boolean Defaults to `true`
-                    --             showAbbreviationSuggestions = true,
-                    --             --- @type "always" | "never" Defaults to `"always"`
-                    --             showExpandedAbbreviation = "always",
-                    --             --- @type boolean Defaults to `false`
-                    --             showSuggestionsAsSnippets = false,
-                    --             --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
-                    --             syntaxProfiles = {},
-                    --             --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
-                    --             variables = {},
-                    --         }
-                    --     })
-                    -- end,
+                    emmet_ls = function()
+                        lspconfig.emmet_ls.setup({
+                            filetypes = { "css", "html" },
+                            -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
+                            -- **Note:** only the options listed in the table are supported.
+                            init_options = {
+                                ---@type table<string, string>
+                                includeLanguages = {},
+                                --- @type string[]
+                                excludeLanguages = {},
+                                --- @type string[]
+                                extensionsPath = {},
+                                --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+                                preferences = {},
+                                --- @type boolean Defaults to `true`
+                                showAbbreviationSuggestions = true,
+                                --- @type "always" | "never" Defaults to `"always"`
+                                showExpandedAbbreviation = "always",
+                                --- @type boolean Defaults to `false`
+                                showSuggestionsAsSnippets = false,
+                                --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+                                syntaxProfiles = {},
+                                --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+                                variables = {},
+                            }
+                        })
+                    end,
                     gopls = function()
                         lspconfig.gopls.setup({
                             root_dir = lspconfig.util.root_pattern("go.mod", "go.sum"),
@@ -160,12 +162,30 @@ return {
                             }
                         })
                     end,
-                    tsserver = function()
-                        lspconfig.tsserver.setup({
+                    ts_ls = function()
+                        lspconfig.ts_ls.setup({
                             root_dir = lspconfig.util.root_pattern("package.json"),
                             init_options = {
                                 single_file_supper = false
-                            }
+                            },
+                            on_attach = function()
+                                local active_clients = vim.lsp.get_active_clients()
+                                local ts
+                                local denoon = false
+
+                                for _, client in pairs(active_clients) do
+                                    if client.name == "ts_ls" then
+                                        ts = client
+                                    end
+                                    if client.name == "denols" then
+                                        denoon = true
+                                    end
+                                end
+
+                                if ts and denoon then
+                                    ts.stop()
+                                end
+                            end,
                         })
                     end,
                     denols = function()
@@ -176,6 +196,14 @@ return {
                                 lint = true,
                                 unstable = true,
                             },
+                            on_attach = function()
+                                local active_clients = vim.lsp.get_active_clients()
+                                for _, client in pairs(active_clients) do
+                                    if client.name == "ts_ls" then
+                                        client.stop()
+                                    end
+                                end
+                            end,
                             settings = {
                                 deno = {
                                     enable = true,
@@ -183,8 +211,8 @@ return {
                                         imports = {
                                             autoDiscover = true,
                                             hosts = {
-                                                ["https://jsr.io/"] = true,
-                                                ["https://deno.land/"] = true
+                                                ["https://jsr.io"] = true,
+                                                ["https://deno.land"] = true
                                             }
                                         }
                                     }
