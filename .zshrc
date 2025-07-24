@@ -53,3 +53,5 @@ export ZSH
 ZSH_THEME="gnzh"
 plugins=(git direnv)
 source $ZSH/oh-my-zsh.sh
+eval $(ssh-agent) >> /dev/null
+ssh-add ~/.ssh/github_ed25519 2>> /dev/null
