@@ -13,12 +13,7 @@ const webDir = await Array.fromAsync(walk(join(home, "websites"), {
     includeFiles: false
 }))
 
-const atDir = await Array.fromAsync(walk(join(home, "development", "ActiveTheory"), {
-    maxDepth: 1,
-    includeFiles: false
-}))
-
-const entries = [...devDir, ...webDir, ...atDir]
+const entries = [...devDir, ...webDir]
 const files  = distinctBy(entries, (entry) => entry.path)
 const fzf = new Deno.Command("fzf", { stdin: "piped", stdout: "piped" })
 const fzfp = fzf.spawn()

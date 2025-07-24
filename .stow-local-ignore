@@ -1,0 +1,8 @@
+scripts
+install
+nix
+iterm
+.stow*
+.git
+.gitignore
+README.*
