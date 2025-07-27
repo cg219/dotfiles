@@ -52,7 +52,8 @@ const colorCodes = {
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
-let codec = "libx265";
+// let codec = "libx265";
+let codec = "hevc_vaapi";
 let abr = "128k";
 let vbr = "1400k";
 let threads = 4;
@@ -65,7 +66,7 @@ for await (const input of Deno.stdin.readable) {
     if (abr == "128k" && parsed.settings.abr) abr = parsed.settings.abr
     if (vbr == "1400k" && parsed.settings.vbr) vbr = parsed.settings.vbr
     if (codec == "libx265" && parsed.settings.codec) codec = parsed.settings.codec
-    if (!sequence && parsed.settings.sequence) sequence = parsed.settings.sequence
+    sequence = parsed.settings.sequence ?? sequence
     if (threads == 4 && parsed.settings.threads) threads = parsed.settings.threads
 
     const iterable = {
@@ -76,14 +77,30 @@ for await (const input of Deno.stdin.readable) {
         }
     }
 
-    for await (const [i, value] of iterable) {
-        const input = resolve(parsed.base.source ?? Deno.cwd(), value.source);
-        const output = resolve(parsed.base.target ?? Deno.cwd(), value.target);
+    if (sequence) {
+        for await (const [i, value] of iterable) {
+            const input = resolve(parsed.base.source ?? Deno.cwd(), value.source);
+            const output = resolve(parsed.base.target ?? Deno.cwd(), value.target);
 
-        // await Deno.stdout.write(encoder.encode(`\r${colorCodes.red}Processing file ${colorCodes.yellow}${Number(i) + 1} of ${parsed.list.length}${colorCodes.reset}`))
-        // await Deno.stdout.write(encoder.encode(`\n`))
-        await run(input, output)
+            // await Deno.stdout.write(encoder.encode(`\r${colorCodes.red}Processing file ${colorCodes.yellow}${Number(i) + 1} of ${parsed.list.length}${colorCodes.reset}`))
+            // await Deno.stdout.write(encoder.encode(`\n`))
+            await run(input, output)
+        }
+    } else {
+        const runs: Promise<any>[] = []
+
+        for await (const [i, value] of iterable) {
+            const input = resolve(parsed.base.source ?? Deno.cwd(), value.source);
+            const output = resolve(parsed.base.target ?? Deno.cwd(), value.target);
+
+            // await Deno.stdout.write(encoder.encode(`\r${colorCodes.red}Processing file ${colorCodes.yellow}${Number(i) + 1} of ${parsed.list.length}${colorCodes.reset}`))
+            // await Deno.stdout.write(encoder.encode(`\n`))
+            runs.push(run(input, output))
+        }
+
+        await Promise.all(runs)
     }
+
 }
 
 function parseProgress(progressChunk: string) : Generation {
@@ -184,10 +201,16 @@ async function run(input: string, output: string) {
     // const secondPass:string[] = [];
 
     firstPass.push('-y');
+    firstPass.push('-hwaccel');
+    firstPass.push('vaapi');
+    firstPass.push('-hwaccel_output_format');
+    firstPass.push('vaapi');
     firstPass.push('-i');
     firstPass.push(input);
     firstPass.push('-map');
     firstPass.push('0');
+    firstPass.push('-vf');
+    firstPass.push('format=vaapi,hwupload');
     firstPass.push('-c:v');
     firstPass.push(codec);
     firstPass.push('-b:v');
