@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/mentegee/.zsh/completions:"* ]]; then export FPATH="/home/mentegee/.zsh/completions:$FPATH"; fi
 ZSH="$HOME/.oh-my-zsh";
 
 PATH="$PATH:/opt/homebrew/bin"
@@ -25,15 +27,13 @@ function dk() {
 
 alias switch="sudo darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS"
 alias mente="cd ~"
-alias desk="cd ~/Desktop"
 alias web="cd ~/websites"
 alias dev="cd ~/development"
-alias apps="cd ~/apps"
 alias vim="nvim"
 alias n="nvim ."
-alias gateo="sudo spctl --master-disable"
-alias gatec="sudo spctl --master-enable"
-alias getssh="cat ~/.ssh/id_rsa.pub | pbcopy"
+# alias gateo="sudo spctl --master-disable"
+# alias gatec="sudo spctl --master-enable"
+# alias getssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 alias ".."="cd ../"
 alias "..."="cd ../../"
 alias gomit="git commit -m"
@@ -55,3 +55,8 @@ plugins=(git direnv)
 source $ZSH/oh-my-zsh.sh
 eval $(ssh-agent) >> /dev/null
 ssh-add ~/.ssh/github_ed25519 2>> /dev/null
+
+# Initialize zsh completions (added by deno install script)
+autoload -Uz compinit
+compinit
+. "$HOME/.deno/env"
