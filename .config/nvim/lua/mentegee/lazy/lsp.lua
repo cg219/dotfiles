@@ -120,6 +120,11 @@ return {
                 ensure_installed = { "astro", "denols", "gopls", "cssls", "html", "htmx", "lua_ls", "svelte", "ts_ls", "emmet_ls" },
                 handlers = {
                     lsp_zero.default_setup,
+                    qmlls = function()
+                        lspconfig.qmlls.setup({
+                            cmd = { "qmlls", "-E" }
+                        })
+                    end,
                     emmet_ls = function()
                         lspconfig.emmet_ls.setup({
                             filetypes = { "css", "html" },
