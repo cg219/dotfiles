@@ -8,7 +8,8 @@ keybinds clear-defaults=true {
         bind "o" { ToggleFloatingPanes; SwitchToMode "Locked"; }
         bind "x" { CloseFocus; SwitchToMode "Locked"; }
         bind "t" { NewTab; SwitchToMode "Locked"; }
-        bind "q" { CloseTab; SwitchToMode "Locked"; }
+        bind "q" { Quit; SwitchToMode "Locked"; }
+        bind "Q" { CloseTab; SwitchToMode "Locked"; }
         bind "L" "Right" { GoToNextTab; }
         bind "H" "Left" { GoToPreviousTab; }
         bind "j" { MoveFocus "Down"; }
