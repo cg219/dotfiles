@@ -6,11 +6,11 @@
   "width": 0,
   "height": 0,
   "config": "default",
-  "theme": "dracula",
+  "theme": "catppuccin-macchiato",
   "border": { "radius": 0, "width": 0, "color": "#515151" },
   "shadow": { "blur": 0, "x": 0, "y": 0 },
   "font": {
-    "family": "UbuntuMono Nerd Font Mono",
+    "family": "0xProto Nerd Font",
     "size": 8,
     "ligatures": true
   },
