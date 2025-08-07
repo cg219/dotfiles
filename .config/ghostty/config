@@ -1,9 +1,9 @@
-theme=Dracula
+theme=catppuccin-macchiato
 shell-integration=zsh
-font-family=UbuntuMono Nerd Font
-font-size=20
+font-family=0xProto Nerd Font
+font-size=16
 background-opacity=0.9
-font-thicken=true
+font-thicken=false
 quick-terminal-autohide=true
 quick-terminal-animation-duration=0
 keybind = global:cmd+alt+space=toggle_quick_terminal
