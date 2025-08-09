@@ -1,7 +1,28 @@
 layout {
     pane
+    // pane borderless=true {
+    //     plugin location="zellij:compact-bar"
+    //     size 1
+    // }
     pane borderless=true {
-        plugin location="zellij:compact-bar"
+        plugin location="file:~/.local/share/zellij/plugins/zjstatus.wasm" {
+            format_left  "{mode}#[fg=black,bg=blue,bold]{session}  #[fg=blue,bg=#181825]{tabs}"
+            format_right "#[fg=#181825,bg=#b1bbfa]"
+            format_space "#[bg=#181825]"
+
+            hide_frame_for_single_pane "true"
+
+            mode_normal  "#[fg=#181825,bg=red] #[bg=red]    #[fg=red,bg=blue]"
+            mode_locked  "#[fg=#181825,bg=green] #[bg=green]    #[fg=green,bg=blue]"
+
+            tab_normal              "#[fg=#181825,bg=#4C4C59] #[fg=#000000,bg=#4C4C59]{index}  {name} #[fg=#4C4C59,bg=#181825]"
+            tab_normal_fullscreen   "#[fg=#6C7086,bg=#181825] {index} {name} [] "
+            tab_normal_sync         "#[fg=#6C7086,bg=#181825] {index} {name} <> "
+            tab_active              "#[fg=#181825,bg=#ffffff,bold,italic] {index}  {name} #[fg=#ffffff,bg=#181825]"
+            tab_active_fullscreen   "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} [] "
+            tab_active_sync         "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} <> "
+        }
+
         size 1
     }
 }
