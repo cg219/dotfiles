@@ -12,8 +12,8 @@ layout {
 
             hide_frame_for_single_pane "true"
 
-            mode_normal  "#[fg=#181825,bg=red] #[bg=red]    #[fg=red,bg=#181825]"
-            mode_locked  "#[fg=#181825,bg=green] #[bg=green]    #[fg=green,bg=#181825]"
+            mode_normal  "#[fg=#181825,bg=#ed8796] #[bg=#ed8796]    #[fg=#ed8796,bg=#181825]"
+            mode_locked  "#[fg=#181825,bg=#a6da95] #[bg=#a6da95]    #[fg=#a6da95,bg=#181825]"
 
             tab_normal              "#[fg=#181825,bg=#4C4C59] #[fg=#000000,bg=#4C4C59]{index}  {name} #[fg=#4C4C59,bg=#181825]"
             tab_normal_fullscreen   "#[fg=#6C7086,bg=#181825] {index} {name} [] "
