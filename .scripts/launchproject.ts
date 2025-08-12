@@ -2,6 +2,7 @@ import { walk } from "jsr:@std/fs";
 import { join } from "jsr:@std/path/join";
 import { distinctBy } from "jsr:@std/collections";
 
+const customProjects = ["dotfiles"]
 const home = Deno.env.get("HOME") ?? "/";
 const devDir = await Array.fromAsync(walk(join(home, "development"), {
     maxDepth: 1,
@@ -13,8 +14,15 @@ const webDir = await Array.fromAsync(walk(join(home, "websites"), {
     includeFiles: false
 }))
 
-const entries = [...devDir, ...webDir]
-const files  = distinctBy(entries, (entry) => entry.path)
+const homefiles = await Array.fromAsync(walk(home, {
+    maxDepth: 1,
+    includeFiles: false
+}))
+
+const filtered = homefiles.filter((entry) => entry.name.includes(customProjects))
+
+const entries = [...devDir, ...webDir, ...filtered]
+const files = distinctBy(entries, (entry) => entry.path)
 const fzf = new Deno.Command("fzf", { stdin: "piped", stdout: "piped" })
 const fzfp = fzf.spawn()
 const pwriter = fzfp.stdin.getWriter()
@@ -35,16 +43,24 @@ const chosenEntry = files.find((f) => {
 
 if (!chosenEntry) Deno.exit();
 
-await new Deno.Command("zellij", {
+// await new Deno.Command("zellij", {
+//     args: [
+//         "attach",
+//         "-c",
+//         chosenEntry.name,
+//         "options",
+//         "--default-cwd",
+//         chosenEntry.path,
+//         "--default-layout",
+//         "normal",
+//     ]
+// }).spawn().output()
+
+await new Deno.Command("nvim", {
     args: [
-        "attach",
-        "-c",
-        chosenEntry.name,
-        "options",
-        "--default-cwd",
+        "--cmd",
+        `:cd ${chosenEntry.path}`,
         chosenEntry.path,
-        "--default-layout",
-        "normal",
     ]
 }).spawn().output()
 

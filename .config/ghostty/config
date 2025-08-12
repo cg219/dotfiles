@@ -1,9 +1,37 @@
+# Style
 theme=catppuccin-macchiato
-shell-integration=zsh
+background-opacity=0.9
 font-family=0xProto Nerd Font
 font-size=16
-background-opacity=0.9
 font-thicken=false
+split-divider-color=#91d7e3
+unfocused-split-opacity=0.1
+unfocused-split-fill=#1e2030
+
+shell-integration=zsh
 quick-terminal-autohide=true
 quick-terminal-animation-duration=0
+
+# General
 keybind = global:cmd+alt+space=toggle_quick_terminal
+keybind = ctrl+space>,=reload_config
+
+# Panes
+keybind = ctrl+space>t=new_split:auto
+keybind = ctrl+space>q=close_surface
+keybind = ctrl+space>h=goto_split:left
+keybind = ctrl+space>j=goto_split:down
+keybind = ctrl+space>k=goto_split:up
+keybind = ctrl+space>l=goto_split:right
+keybind = ctrl+space>y=toggle_split_zoom
+keybind = ctrl+super+h=resize_split:left,25
+keybind = ctrl+super+j=resize_split:down,25
+keybind = ctrl+super+k=resize_split:up,25
+keybind = ctrl+super+l=resize_split:right,20
+keybind = ctrl+super+p=goto_split:next
+keybind = ctrl+super+shift+p=goto_split:previous
+
+# Font Control
+keybind = ctrl+super+h=increase_font_size:2
+keybind = ctrl+super+n=decrease_font_size:2
+keybind = ctrl+super+y=reset_font_size
