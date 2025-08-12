@@ -60,3 +60,10 @@ ssh-add ~/.ssh/github_ed25519 2>> /dev/null
 autoload -Uz compinit
 compinit
 . "$HOME/.deno/env"
+
+# fnm
+FNM_PATH="/home/mentegee/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi

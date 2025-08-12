@@ -19,7 +19,7 @@ keybinds clear-defaults=true {
         bind "Enter" { SwitchToMode "Locked"; }
         bind "r" { SwitchToMode "Resize"; }
         bind "m" { SwitchToMode "Move"; }
-        bind "w" {
+        bind "s" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true
@@ -34,7 +34,7 @@ keybinds clear-defaults=true {
         bind "5" { GoToTab 5; SwitchToMode "Locked"; }
     }
     locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "Ctrl k" { SwitchToMode "Normal"; }
     }
     resize {
         bind "Enter" { SwitchToMode "Locked"; }

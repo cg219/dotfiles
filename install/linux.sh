@@ -1,4 +1,4 @@
-sudo pacman -Syu ripgrep deno go ghostty cargo wget zellij curl zsh neovim lua lazygit libfido2 docker-compose skate nodejs direnv ollama just python ffmpeg terraform tinygo bitwarden vlc discord obsidian bat yt-dlp mpv tealdeer stow fzf npm ttf-ubuntu-mono-nerd pavucontrol cifs-utils samba
+sudo pacman -Syu ripgrep deno go ghostty cargo wget zellij curl zsh neovim lua lazygit libfido2 docker-compose skate direnv ollama just python ffmpeg terraform tinygo bitwarden vlc discord obsidian bat yt-dlp mpv tealdeer stow fzf npm ttf-ubuntu-mono-nerd pavucontrol cifs-utils samba
 
 yay -S freeze turso-cli goose zen-browser-bin clipse
 
