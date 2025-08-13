@@ -32,6 +32,6 @@ keybind = ctrl+super+p=goto_split:next
 keybind = ctrl+super+shift+p=goto_split:previous
 
 # Font Control
-keybind = ctrl+super+h=increase_font_size:2
-keybind = ctrl+super+n=decrease_font_size:2
-keybind = ctrl+super+y=reset_font_size
+keybind = ctrl+super+.=increase_font_size:2
+keybind = ctrl+super+,=decrease_font_size:2
+keybind = ctrl+super+m=reset_font_size
