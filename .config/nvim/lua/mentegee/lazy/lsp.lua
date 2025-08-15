@@ -40,14 +40,14 @@ return {
                 end
 
                 map("<leader>lk", function ()
-                    local id = vim.fn.input("Process ID: ")
+                    local id = vim.fn.input("LSP Name: ")
                     vim.cmd("LspStop " .. id)
-                end, "[L]sp Stop")
+                end, "[L]sp [K]ill")
 
                 map("<leader>lb", function ()
                     local id = vim.fn.input("Config Name: ")
                     vim.cmd("LspStart " .. id)
-                end, "[L]sp Start")
+                end, "[L]sp [B]egin")
                 -- Jump to the definition of the word under your cursor.
                 --  This is where a variable was first declared, or where a function is defined, etc.
                 --  To jump back, press <C-T>.
@@ -122,6 +122,7 @@ return {
                     lsp_zero.default_setup,
                     qmlls = function()
                         lspconfig.qmlls.setup({
+                            filetypes = { "qml" },
                             cmd = { "qmlls", "-E" }
                         })
                     end,
@@ -195,7 +196,7 @@ return {
                     end,
                     denols = function()
                         lspconfig.denols.setup({
-                            root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+                            root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
                             filetypes = { "typescript" },
                             init_options = {
                                 lint = true,
