@@ -43,12 +43,19 @@ alias obsidian="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents && 
 alias f="deno run -A --no-lock ~/.scripts/launchproject.ts"
 # alias recode="deno --no-lock --allow-run -RW ~/.scripts/recode.ts < recode.yaml"
 # alias zj="zellij a $(zellij list-sessions -rs | head -n 1)"
+alias mom="sudo mount -o uid=mentegee -o gid=mentegee -rw /mnt/smb/media"
+
+# docker aliases
 alias dcl="docker context use desktop-linux"
 alias ds="docker ps"
 alias dcd="docker compose down"
 alias dcu="docker compose up -d"
 alias dcub="docker compose up -d --build"
-alias mom="sudo mount -o uid=mentegee -o gid=mentegee -rw /mnt/smb/media"
+
+# ls aliases
+alias ls="ls --color=auto"
+alias ll="ls -lh --color=auto"
+alias la="ls -lah --color=auto"
 
 # ZSH_THEME="gnzh"
 # plugins=(git direnv)
