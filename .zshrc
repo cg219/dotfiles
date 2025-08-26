@@ -48,10 +48,12 @@ alias ds="docker ps"
 alias dcd="docker compose down"
 alias dcu="docker compose up -d"
 alias dcub="docker compose up -d --build"
+alias mom="sudo mount -o uid=mentegee -o gid=mentegee -rw /mnt/smb/media"
 
-ZSH_THEME="gnzh"
-plugins=(git direnv)
-source $ZSH/oh-my-zsh.sh
+# ZSH_THEME="gnzh"
+# plugins=(git direnv)
+# source $ZSH/oh-my-zsh.sh
+eval "$(starship init zsh)"
 eval $(ssh-agent) >> /dev/null
 ssh-add ~/.ssh/github_ed25519 2>> /dev/null
 

@@ -4,6 +4,6 @@ export CUSTOM_INSTALL="$HOME/.bin";
 export NPM_INSTALL="$HOME/.npm_global";
 export SDKS="$HOME/sdks";
 export USE_GKE_GCLOUD_AUTH_PLUGIN="True";
-export CHARM_HOST="localhost";
 export FZF_DEFAULT_OPTS="--tmux";
 export EDITOR="nvim";
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
