@@ -52,13 +52,13 @@ ignore_missing_fields = false
 # ================   Style =================
 #
 # Whether to use the builtin syntax highlighting with chroma or use bat. Values: "" for builtin chroma, "bat" for bat
-code_previewer = ''
+code_previewer = 'bat'
 # 
 # If you don't have or don't want Nerdfont installed you can turn this off
 nerdfont = true
 #
 # Set transparent background or not (this only work when your terminal background is transparent)
-transparent_background = false
+transparent_background = true
 # 
 # File preview width allow '0' (this mean same as file panel),'x' x must be from 2 to 10 (This means that the width of the file preview will be one xth of the total width.)
 file_preview_width = 0
