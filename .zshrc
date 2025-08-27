@@ -1,6 +1,5 @@
 # Add deno completions to search path
 if [[ ":$FPATH:" != *":/home/mentegee/.zsh/completions:"* ]]; then export FPATH="/home/mentegee/.zsh/completions:$FPATH"; fi
-export ZSH="$HOME/.oh-my-zsh";
 
 PATH="$PATH:/opt/homebrew/bin"
 PATH="$PATH:$GOPATH/bin"

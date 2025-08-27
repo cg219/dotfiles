@@ -1,5 +1,5 @@
 format = """
-$deno $nodejs $golang
+$fill $deno $nodejs $golang
 $username\
 $hostname\
 $localip\
@@ -61,15 +61,15 @@ style = 'bold rosewater'
 
 [golang]
 symbol = ''
-format = '(  [$symbol $version( on $mod_version)]($style))'
+format = '( [$symbol $version( on $mod_version)]($style))'
 
 [deno]
 symbol = ''
-format = '(  [$symbol $version]($style)\n)'
+format = '( [$symbol $version]($style))'
 
 [nodejs]
 symbol = ''
-format = '(  [$symbol $version]($style))'
+format = '( [$symbol $version]($style))'
 
 [fill]
 symbol = ' '
