@@ -43,19 +43,6 @@ const chosenEntry = files.find((f) => {
 
 if (!chosenEntry) Deno.exit();
 
-// await new Deno.Command("zellij", {
-//     args: [
-//         "attach",
-//         "-c",
-//         chosenEntry.name,
-//         "options",
-//         "--default-cwd",
-//         chosenEntry.path,
-//         "--default-layout",
-//         "normal",
-//     ]
-// }).spawn().output()
-
 await new Deno.Command("nvim", {
     args: [
         "--cmd",
@@ -63,4 +50,3 @@ await new Deno.Command("nvim", {
         chosenEntry.path,
     ]
 }).spawn().output()
-

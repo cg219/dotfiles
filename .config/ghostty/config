@@ -17,13 +17,14 @@ keybind = global:cmd+alt+space=toggle_quick_terminal
 keybind = ctrl+space>,=reload_config
 
 # Panes
-keybind = ctrl+space>t=new_split:auto
+keybind = ctrl+super+t=new_split:down
+keybind = ctrl+super+g=new_split:right
 keybind = ctrl+space>q=close_surface
 keybind = ctrl+space>h=goto_split:left
 keybind = ctrl+space>j=goto_split:down
 keybind = ctrl+space>k=goto_split:up
 keybind = ctrl+space>l=goto_split:right
-keybind = ctrl+space>y=toggle_split_zoom
+keybind = ctrl+super+y=toggle_split_zoom
 keybind = ctrl+super+h=resize_split:left,25
 keybind = ctrl+super+j=resize_split:down,25
 keybind = ctrl+super+k=resize_split:up,25

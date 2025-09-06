@@ -1,6 +1,3 @@
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/mentegee/.zsh/completions:"* ]]; then export FPATH="/home/mentegee/.zsh/completions:$FPATH"; fi
-
 PATH="$PATH:/opt/homebrew/bin"
 PATH="$PATH:$GOPATH/bin"
 PATH="$PATH:$SDKS"
@@ -24,6 +21,7 @@ function dk() {
     docker rm -f $1;
 }
 
+# custom aliases
 alias switch="sudo darwin-rebuild switch --flake ~/dotfiles/nix/#dev-macOS"
 alias mente="cd ~"
 alias web="cd ~/websites"
@@ -56,9 +54,17 @@ alias ls="ls --color=auto"
 alias ll="ls -lh --color=auto"
 alias la="ls -lah --color=auto"
 
-# ZSH_THEME="gnzh"
-# plugins=(git direnv)
-# source $ZSH/oh-my-zsh.sh
+# history settings
+HISTFILE=~/.zsh_history
+HISTSIZE=20000
+SAVEHIST=20000
+setopt SHARE_HISTORY
+bindkey "^[OA" history-search-backward
+bindkey "^[OB" history-search-forward
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
+# 3rd party
 eval "$(starship init zsh)"
 eval $(ssh-agent) >> /dev/null
 ssh-add ~/.ssh/github_ed25519 2>> /dev/null
@@ -67,6 +73,9 @@ ssh-add ~/.ssh/github_ed25519 2>> /dev/null
 autoload -Uz compinit
 compinit
 . "$HOME/.deno/env"
+
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/mentegee/.zsh/completions:"* ]]; then export FPATH="/home/mentegee/.zsh/completions:$FPATH"; fi
 
 # fnm
 FNM_PATH="/home/mentegee/.local/share/fnm"
