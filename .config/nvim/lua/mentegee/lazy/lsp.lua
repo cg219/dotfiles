@@ -160,10 +160,11 @@ return {
                                 gopls = {
                                     usePlaceholders = false,
                                     analyses = {
-                                        unusedparams = true
+                                        unusedparams = true,
                                     },
                                     staticcheck = true,
-                                    gofumpt = true
+                                    gofumpt = true,
+                                    standaloneTags = { "dev,release,testing" },
                                 }
                             }
                         })
