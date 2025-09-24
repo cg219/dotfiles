@@ -41,6 +41,8 @@ alias f="deno run -A --no-lock ~/.scripts/launchproject.ts"
 # alias recode="deno --no-lock --allow-run -RW ~/.scripts/recode.ts < recode.yaml"
 # alias zj="zellij a $(zellij list-sessions -rs | head -n 1)"
 alias mom="sudo mount -o uid=mentegee -o gid=mentegee -rw /mnt/smb/media"
+alias mou="sudo mount -o uid=mentegee -o gid=mentegee -rw /mnt/smb/userdata"
+alias mos="sudo mount -o uid=mentegee -o gid=mentegee -rw /mnt/smb/storage"
 
 # docker aliases
 alias dcl="docker context use desktop-linux"
